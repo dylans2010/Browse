@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct MainWindowView: View {
     @State private var tabManager = TabManager()
@@ -9,6 +10,7 @@ struct MainWindowView: View {
     @State private var urlText: String = ""
     @State private var isShowingAISidebar: Bool = false
     @State private var isReaderModeActive: Bool = false
+    @Query private var profiles: [Profile]
 
     var body: some View {
         NavigationSplitView {
@@ -33,9 +35,8 @@ struct MainWindowView: View {
                             progress: tabManager.activeTab?.webPage.estimatedProgress ?? 0,
                             isReaderAvailable: tabManager.activeTab?.webPage.isReaderAvailable ?? false,
                             isReaderModeActive: $isReaderModeActive,
-                            onCommit: {
-                                loadURL()
-                            }
+                            onCommit: { loadURL() },
+                            onReload: { tabManager.activeTab?.webPage.reload() }
                         )
 
                         Button(action: { isShowingAISidebar.toggle() }) {
@@ -73,7 +74,9 @@ struct MainWindowView: View {
         }
         .onAppear {
             if tabManager.tabs.isEmpty {
-                tabManager.createTab(url: URL(string: "https://www.apple.com"), profileId: UUID())
+                // Fixed: use the stored default profile instead of a random UUID.
+                let profileId = profiles.first?.id ?? UUID()
+                tabManager.createTab(url: URL(string: "https://www.apple.com"), profileId: profileId)
             }
         }
         .onChange(of: tabManager.activeTab?.webPage.url) { _, newValue in

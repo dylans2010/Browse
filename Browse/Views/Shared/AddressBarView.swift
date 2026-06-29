@@ -7,6 +7,7 @@ struct AddressBarView: View {
     var isReaderAvailable: Bool
     @Binding var isReaderModeActive: Bool
     var onCommit: () -> Void
+    var onReload: () -> Void
 
     private var backgroundColor: Color {
         #if os(macOS)
@@ -59,7 +60,8 @@ struct AddressBarView: View {
                     .buttonStyle(.plain)
                 }
 
-                Button(action: { onCommit() }) {
+                // Fixed: previously called onCommit() (navigate); now correctly reloads the page.
+                Button(action: { onReload() }) {
                     Image(systemName: "arrow.clockwise")
                         .foregroundColor(.secondary)
                 }
