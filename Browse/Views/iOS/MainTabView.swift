@@ -1,14 +1,38 @@
 import SwiftUI
+import SwiftData
 
 struct MainTabView: View {
     @State private var tabManager = TabManager()
     @State private var isShowingTabSwitcher = false
     @State private var isShowingMenu = false
+    @State private var urlText: String = ""
+    @State private var isReaderModeActive: Bool = false
+    @Query private var profiles: [Profile]
 
     var body: some View {
         VStack(spacing: 0) {
+            // Address bar — previously missing entirely on iOS.
+            AddressBarView(
+                text: $urlText,
+                isLoading: tabManager.activeTab?.webPage.isLoading ?? false,
+                progress: tabManager.activeTab?.webPage.estimatedProgress ?? 0,
+                isReaderAvailable: tabManager.activeTab?.webPage.isReaderAvailable ?? false,
+                isReaderModeActive: $isReaderModeActive,
+                onCommit: { loadURL() },
+                onReload: { tabManager.activeTab?.webPage.reload() }
+            )
+            .padding(.horizontal)
+            .padding(.vertical, 8)
+            .background(.ultraThinMaterial)
+
             if let activeTab = tabManager.activeTab {
                 WebView(webView: activeTab.webPage.webView)
+                    .onAppear {
+                        activeTab.webPage.onURLChange = { url, title in
+                            urlText = url.absoluteString
+                            tabManager.recordVisit(url: url, title: title, profileId: activeTab.item.profileId)
+                        }
+                    }
                     .overlay(alignment: .top) {
                         if activeTab.webPage.isLoading {
                             ProgressView(value: activeTab.webPage.estimatedProgress)
@@ -20,7 +44,7 @@ struct MainTabView: View {
                 ContentUnavailableView("No Open Tabs", systemImage: "plus.circle")
             }
 
-            // Bottom Bar
+            // Bottom navigation bar
             HStack {
                 Button(action: { tabManager.activeTab?.webPage.goBack() }) {
                     Image(systemName: "chevron.left")
@@ -61,7 +85,14 @@ struct MainTabView: View {
         }
         .onAppear {
             if tabManager.tabs.isEmpty {
-                tabManager.createTab(url: URL(string: "https://www.apple.com"), profileId: UUID())
+                // Fixed: use the stored default profile instead of a random UUID.
+                let profileId = profiles.first?.id ?? UUID()
+                tabManager.createTab(url: URL(string: "https://www.apple.com"), profileId: profileId)
+            }
+        }
+        .onChange(of: tabManager.activeTab?.webPage.url) { _, newValue in
+            if let url = newValue {
+                urlText = url.absoluteString
             }
         }
         .fullScreenCover(isPresented: $isShowingTabSwitcher) {
@@ -72,7 +103,9 @@ struct MainTabView: View {
                 List {
                     Section {
                         Button("New Tab") {
-                            tabManager.createTab(url: URL(string: "https://www.google.com"), profileId: UUID())
+                            // Fixed: use the stored default profile instead of a random UUID.
+                            let profileId = profiles.first?.id ?? UUID()
+                            tabManager.createTab(url: URL(string: "https://www.google.com"), profileId: profileId)
                             isShowingMenu = false
                         }
                         Button("Bookmarks") { /* Navigate */ }
@@ -89,6 +122,23 @@ struct MainTabView: View {
                 .navigationBarTitleDisplayMode(.inline)
             }
             .presentationDetents([.medium])
+        }
+    }
+
+    private func loadURL() {
+        guard let activeTab = tabManager.activeTab else { return }
+        var targetURL: URL?
+
+        if urlText.contains("://") {
+            targetURL = URL(string: urlText)
+        } else if urlText.contains(".") {
+            targetURL = URL(string: "https://\(urlText)")
+        } else {
+            targetURL = SearchProviderManager.shared.searchURL(for: urlText)
+        }
+
+        if let url = targetURL {
+            activeTab.webPage.load(url: url)
         }
     }
 
