@@ -31,49 +31,119 @@
 		3BB7A82B /* AddressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A82C /* AddressBarView.swift */; };
 		3BB7A82D /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A82E /* SidebarView.swift */; };
 		3BB7A82F /* AIPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A830 /* AIPanelView.swift */; };
-		3BB7A831 /* MainWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A832 /* MainWindowView.swift */; };
+		3BB7A831 /* MainWindowView.swift in Sources */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/macOS/MainWindowView.swift; sourceTree = "<group>"; };
 		3BB7A833 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A834 /* MainTabView.swift */; };
 		3BB7A835 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A836 /* SettingsView.swift */; };
-		3BB7A837 /* BookmarkManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A838 /* BookmarkManagerView.swift */; };
-		3BB7A839 /* HistoryManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A83A /* HistoryManagerView.swift */; };
-		3BB7A83B /* DownloadManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A83C /* DownloadManagerView.swift */; };
 		3BB7A83D /* TabSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A83E /* TabSwitcher.swift */; };
+		3BB7A890 /* PromptLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A891 /* PromptLibrary.swift */; };
+		3BB7A892 /* ContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A893 /* ContextManager.swift */; };
+		3BB7A894 /* AIRateLimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A895 /* AIRateLimiter.swift */; };
+		3BB7A896 /* AITokenEstimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A897 /* AITokenEstimator.swift */; };
+		3BB7A898 /* AIErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A899 /* AIErrorHandler.swift */; };
+		3BB7A89A /* ResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A89B /* ResponseParser.swift */; };
+		3BB7A840 /* Workspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A841 /* Workspace.swift */; };
+		3BB7A842 /* SessionSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A843 /* SessionSnapshot.swift */; };
+		3BB7A844 /* WorkspaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A845 /* WorkspaceManager.swift */; };
+		3BB7A846 /* SiteInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A847 /* SiteInspector.swift */; };
+		3BB7A848 /* SitePermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A849 /* SitePermission.swift */; };
+		3BB7A84A /* BrowserUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A84B /* BrowserUtilities.swift */; };
+		3BB7A84C /* MultiWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A84D /* MultiWindowManager.swift */; };
+		3BB7A84E /* AudioSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A84F /* AudioSettingsManager.swift */; };
+		3BB7A850 /* CustomSite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A851 /* CustomSite.swift */; };
+		3BB7A852 /* CustomSiteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A853 /* CustomSiteViewModel.swift */; };
+		3BB7A854 /* CustomSiteEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A855 /* CustomSiteEditorView.swift */; };
+		3BB7A856 /* BrowserExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A857 /* BrowserExtension.swift */; };
+		3BB7A858 /* ExtensionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A859 /* ExtensionManager.swift */; };
+		3BB7A85A /* ExtensionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A85B /* ExtensionGenerator.swift */; };
+		3BB7A85C /* BrowserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A85D /* BrowserViewModel.swift */; };
+		3BB7A85E /* AISettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A85F /* AISettingsViewModel.swift */; };
+		3BB7A860 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A861 /* LibraryViewModel.swift */; };
+		3BB7A862 /* LibraryViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A863 /* LibraryViews.swift */; };
+		3BB7A864 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3BB7A865 /* Localizable.strings */; };
+		3BB7A866 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A867 /* Logger.swift */; };
+		3BB7A868 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A869 /* Analytics.swift */; };
+		3BB7A86A /* SitePermissionsDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A86B /* SitePermissionsDashboard.swift */; };
+		3BB7A86C /* PageInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A86D /* PageInfoView.swift */; };
+		3BB7A86E /* UtilityToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A86F /* UtilityToolsView.swift */; };
+		3BB7A870 /* ExtensionManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A871 /* ExtensionManagerView.swift */; };
+		3BB7A872 /* CommandPaletteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A873 /* CommandPaletteViewModel.swift */; };
+		3BB7A874 /* CommandPaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A875 /* CommandPaletteView.swift */; };
+		3BB7A876 /* StartPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A877 /* StartPageViewModel.swift */; };
+		3BB7A878 /* StartPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A879 /* StartPageView.swift */; };
+		3BB7A87A /* WebsiteAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A87B /* WebsiteAnnotation.swift */; };
+		3BB7A87C /* WebsiteAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A87D /* WebsiteAnnotationView.swift */; };
+		3BB7A87E /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7A87F /* ShortcutManager.swift */; };
 /* END PBXBuildFile */
 
 /* BEGIN PBXFileReference */
 		3BB7A8AD /* Browse.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Browse.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3BB7A802 /* BrowseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseApp.swift; sourceTree = "<group>"; };
-		3BB7A804 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3BB7A8B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3BB7A806 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
-		3BB7A808 /* OpenRouterClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenRouterClient.swift; sourceTree = "<group>"; };
-		3BB7A80A /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
-		3BB7A80C /* PromptBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptBuilder.swift; sourceTree = "<group>"; };
-		3BB7A80E /* ConversationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationManager.swift; sourceTree = "<group>"; };
-		3BB7A810 /* StreamingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingManager.swift; sourceTree = "<group>"; };
-		3BB7A812 /* ModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManager.swift; sourceTree = "<group>"; };
-		3BB7A814 /* AISettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISettings.swift; sourceTree = "<group>"; };
-		3BB7A816 /* HistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItem.swift; sourceTree = "<group>"; };
-		3BB7A818 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
-		3BB7A81A /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
-		3BB7A81C /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		3BB7A81E /* DownloadItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadItem.swift; sourceTree = "<group>"; };
-		3BB7A820 /* PersistenceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceProvider.swift; sourceTree = "<group>"; };
-		3BB7A822 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
-		3BB7A824 /* SearchProviderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProviderManager.swift; sourceTree = "<group>"; };
-		3BB7A826 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
-		3BB7A828 /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
-		3BB7A82A /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
-		3BB7A82C /* AddressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBarView.swift; sourceTree = "<group>"; };
-		3BB7A82E /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
-		3BB7A830 /* AIPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIPanelView.swift; sourceTree = "<group>"; };
-		3BB7A832 /* MainWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowView.swift; sourceTree = "<group>"; };
-		3BB7A834 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
-		3BB7A836 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		3BB7A838 /* BookmarkManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkManagerView.swift; sourceTree = "<group>"; };
-		3BB7A83A /* HistoryManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManagerView.swift; sourceTree = "<group>"; };
-		3BB7A83C /* DownloadManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManagerView.swift; sourceTree = "<group>"; };
-		3BB7A83E /* TabSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabSwitcher.swift; sourceTree = "<group>"; };
+		3BB7A802 /* BrowseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/BrowseApp.swift; sourceTree = "<group>"; };
+		3BB7A804 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
+		3BB7A8B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Resources/Info.plist; sourceTree = "<group>"; };
+		3BB7A806 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Security/KeychainManager.swift; sourceTree = "<group>"; };
+		3BB7A808 /* OpenRouterClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI/OpenRouterClient.swift; sourceTree = "<group>"; };
+		3BB7A80A /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI/AIService.swift; sourceTree = "<group>"; };
+		3BB7A80C /* PromptBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI/PromptBuilder.swift; sourceTree = "<group>"; };
+		3BB7A80E /* ConversationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI/ConversationManager.swift; sourceTree = "<group>"; };
+		3BB7A810 /* StreamingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI/StreamingManager.swift; sourceTree = "<group>"; };
+		3BB7A812 /* ModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI/ModelManager.swift; sourceTree = "<group>"; };
+		3BB7A814 /* AISettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI/AISettings.swift; sourceTree = "<group>"; };
+		3BB7A816 /* HistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/HistoryItem.swift; sourceTree = "<group>"; };
+		3BB7A818 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Bookmark.swift; sourceTree = "<group>"; };
+		3BB7A81A /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/TabItem.swift; sourceTree = "<group>"; };
+		3BB7A81C /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Profile.swift; sourceTree = "<group>"; };
+		3BB7A81E /* DownloadItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/DownloadItem.swift; sourceTree = "<group>"; };
+		3BB7A820 /* PersistenceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence/PersistenceProvider.swift; sourceTree = "<group>"; };
+		3BB7A822 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloads/DownloadManager.swift; sourceTree = "<group>"; };
+		3BB7A824 /* SearchProviderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search/SearchProviderManager.swift; sourceTree = "<group>"; };
+		3BB7A826 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browser/WebView.swift; sourceTree = "<group>"; };
+		3BB7A828 /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Managers/TabManager.swift; sourceTree = "<group>"; };
+		3BB7A82A /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sessions/SessionManager.swift; sourceTree = "<group>"; };
+		3BB7A82C /* AddressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Shared/AddressBarView.swift; sourceTree = "<group>"; };
+		3BB7A82E /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Shared/SidebarView.swift; sourceTree = "<group>"; };
+		3BB7A830 /* AIPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Shared/AIPanelView.swift; sourceTree = "<group>"; };
+		3BB7A832 /* MainWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/macOS/MainWindowView.swift; sourceTree = "<group>"; };
+		3BB7A834 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/iOS/MainTabView.swift; sourceTree = "<group>"; };
+		3BB7A836 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Shared/SettingsView.swift; sourceTree = "<group>"; };
+		3BB7A83E /* TabSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/iOS/TabSwitcher.swift; sourceTree = "<group>"; };
+		3BB7A891 /* PromptLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI/PromptLibrary.swift; sourceTree = "<group>"; };
+		3BB7A893 /* ContextManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI/ContextManager.swift; sourceTree = "<group>"; };
+		3BB7A895 /* AIRateLimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI/AIRateLimiter.swift; sourceTree = "<group>"; };
+		3BB7A897 /* AITokenEstimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI/AITokenEstimator.swift; sourceTree = "<group>"; };
+		3BB7A899 /* AIErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI/AIErrorHandler.swift; sourceTree = "<group>"; };
+		3BB7A89B /* ResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI/ResponseParser.swift; sourceTree = "<group>"; };
+		3BB7A841 /* Workspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Workspace.swift; sourceTree = "<group>"; };
+		3BB7A843 /* SessionSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/SessionSnapshot.swift; sourceTree = "<group>"; };
+		3BB7A845 /* WorkspaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Managers/WorkspaceManager.swift; sourceTree = "<group>"; };
+		3BB7A847 /* SiteInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Managers/SiteInspector.swift; sourceTree = "<group>"; };
+		3BB7A849 /* SitePermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/SitePermission.swift; sourceTree = "<group>"; };
+		3BB7A84B /* BrowserUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities/BrowserUtilities.swift; sourceTree = "<group>"; };
+		3BB7A84D /* MultiWindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Managers/MultiWindowManager.swift; sourceTree = "<group>"; };
+		3BB7A84F /* AudioSettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Managers/AudioSettingsManager.swift; sourceTree = "<group>"; };
+		3BB7A851 /* CustomSite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/CustomSite.swift; sourceTree = "<group>"; };
+		3BB7A853 /* CustomSiteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/CustomSiteViewModel.swift; sourceTree = "<group>"; };
+		3BB7A855 /* CustomSiteEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Shared/CustomSiteEditorView.swift; sourceTree = "<group>"; };
+		3BB7A857 /* BrowserExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/BrowserExtension.swift; sourceTree = "<group>"; };
+		3BB7A859 /* ExtensionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions/ExtensionManager.swift; sourceTree = "<group>"; };
+		3BB7A85B /* ExtensionGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions/ExtensionGenerator.swift; sourceTree = "<group>"; };
+		3BB7A85D /* BrowserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/BrowserViewModel.swift; sourceTree = "<group>"; };
+		3BB7A85F /* AISettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/AISettingsViewModel.swift; sourceTree = "<group>"; };
+		3BB7A861 /* LibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/LibraryViewModel.swift; sourceTree = "<group>"; };
+		3BB7A863 /* LibraryViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Shared/LibraryViews.swift; sourceTree = "<group>"; };
+		3BB7A865 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3BB7A867 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Logger.swift; sourceTree = "<group>"; };
+		3BB7A869 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Analytics.swift; sourceTree = "<group>"; };
+		3BB7A86B /* SitePermissionsDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Shared/SitePermissionsDashboard.swift; sourceTree = "<group>"; };
+		3BB7A86D /* PageInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Shared/PageInfoView.swift; sourceTree = "<group>"; };
+		3BB7A86F /* UtilityToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Shared/UtilityToolsView.swift; sourceTree = "<group>"; };
+		3BB7A871 /* ExtensionManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Shared/ExtensionManagerView.swift; sourceTree = "<group>"; };
+		3BB7A873 /* CommandPaletteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/CommandPaletteViewModel.swift; sourceTree = "<group>"; };
+		3BB7A875 /* CommandPaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Shared/CommandPaletteView.swift; sourceTree = "<group>"; };
+		3BB7A877 /* StartPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/StartPageViewModel.swift; sourceTree = "<group>"; };
+		3BB7A879 /* StartPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Shared/StartPageView.swift; sourceTree = "<group>"; };
+		3BB7A87B /* WebsiteAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/WebsiteAnnotation.swift; sourceTree = "<group>"; };
+		3BB7A87D /* WebsiteAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Shared/WebsiteAnnotationView.swift; sourceTree = "<group>"; };
+		3BB7A87F /* ShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Managers/ShortcutManager.swift; sourceTree = "<group>"; };
 /* END PBXFileReference */
 
 /* BEGIN PBXGroup */
@@ -97,16 +167,36 @@
 			isa = PBXGroup;
 			children = (
 				3BB7A8B5 /* App */,
-				3BB7A8B7 /* Security */,
 				3BB7A8C1 /* AI */,
-				3BB7A8C2 /* Models */,
-				3BB7A8C3 /* Storage */,
-				3BB7A8C4 /* Networking */,
-				3BB7A8C5 /* WebKit */,
 				3BB7A8C6 /* Browser */,
+				3BB7A8D0 /* Core */,
+				3BB7A8D1 /* Shared */,
+				3BB7A8C4 /* Networking */,
+				3BB7A8B7 /* Security */,
+				3BB7A8D2 /* Privacy */,
+				3BB7A8D3 /* Storage */,
+				3BB7A8D4 /* Persistence */,
+				3BB7A8D5 /* Downloads */,
+				3BB7A8D6 /* History */,
+				3BB7A8D7 /* Bookmarks */,
+				3BB7A8D8 /* ReadingList */,
+				3BB7A8C2 /* Models */,
+				3BB7A8D9 /* Profiles */,
+				3BB7A8DA /* Sessions */,
+				3BB7A8DB /* Workspaces */,
+				3BB7A8DC /* Extensions */,
+				3BB7A8DD /* CustomSites */,
+				3BB7A8DE /* Search */,
+				3BB7A8DF /* Settings */,
+				3BB7A8E0 /* Themes */,
+				3BB7A8E1 /* Managers */,
+				3BB7A8E2 /* Services */,
+				3BB7A8E3 /* Protocols */,
+				3BB7A8E4 /* ViewModels */,
 				3BB7A8C7 /* Views */,
-				3BB7A804 /* Assets.xcassets */,
-				3BB7A8B4 /* Info.plist */,
+				3BB7A8E5 /* Utilities */,
+				3BB7A8E6 /* Diagnostics */,
+				3BB7A8E7 /* Resources */,
 			);
 			path = Browse;
 			sourceTree = "<group>";
@@ -133,6 +223,12 @@
 				3BB7A808 /* OpenRouterClient.swift */,
 				3BB7A80A /* AIService.swift */,
 				3BB7A80C /* PromptBuilder.swift */,
+				3BB7A891 /* PromptLibrary.swift */,
+				3BB7A893 /* ContextManager.swift */,
+				3BB7A895 /* AIRateLimiter.swift */,
+				3BB7A897 /* AITokenEstimator.swift */,
+				3BB7A899 /* AIErrorHandler.swift */,
+				3BB7A89B /* ResponseParser.swift */,
 				3BB7A80E /* ConversationManager.swift */,
 				3BB7A810 /* StreamingManager.swift */,
 				3BB7A812 /* ModelManager.swift */,
@@ -149,40 +245,27 @@
 				3BB7A81A /* TabItem.swift */,
 				3BB7A81C /* Profile.swift */,
 				3BB7A81E /* DownloadItem.swift */,
+				3BB7A841 /* Workspace.swift */,
+				3BB7A843 /* SessionSnapshot.swift */,
+				3BB7A849 /* SitePermission.swift */,
+				3BB7A851 /* CustomSite.swift */,
+				3BB7A857 /* BrowserExtension.swift */,
+				3BB7A87B /* WebsiteAnnotation.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		3BB7A8C3 /* Storage */ = {
-			isa = PBXGroup;
-			children = (
-				3BB7A820 /* PersistenceProvider.swift */,
-			);
-			path = Storage;
 			sourceTree = "<group>";
 		};
 		3BB7A8C4 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				3BB7A822 /* DownloadManager.swift */,
-				3BB7A824 /* SearchProviderManager.swift */,
 			);
 			path = Networking;
-			sourceTree = "<group>";
-		};
-		3BB7A8C5 /* WebKit */ = {
-			isa = PBXGroup;
-			children = (
-				3BB7A826 /* WebView.swift */,
-			);
-			path = WebKit;
 			sourceTree = "<group>";
 		};
 		3BB7A8C6 /* Browser */ = {
 			isa = PBXGroup;
 			children = (
-				3BB7A828 /* TabManager.swift */,
-				3BB7A82A /* SessionManager.swift */,
+				3BB7A826 /* WebView.swift */,
 			);
 			path = Browser;
 			sourceTree = "<group>";
@@ -204,9 +287,15 @@
 				3BB7A82E /* SidebarView.swift */,
 				3BB7A830 /* AIPanelView.swift */,
 				3BB7A836 /* SettingsView.swift */,
-				3BB7A838 /* BookmarkManagerView.swift */,
-				3BB7A83A /* HistoryManagerView.swift */,
-				3BB7A83C /* DownloadManagerView.swift */,
+				3BB7A855 /* CustomSiteEditorView.swift */,
+				3BB7A863 /* LibraryViews.swift */,
+				3BB7A86B /* SitePermissionsDashboard.swift */,
+				3BB7A86D /* PageInfoView.swift */,
+				3BB7A86F /* UtilityToolsView.swift */,
+				3BB7A871 /* ExtensionManagerView.swift */,
+				3BB7A875 /* CommandPaletteView.swift */,
+				3BB7A879 /* StartPageView.swift */,
+				3BB7A87D /* WebsiteAnnotationView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -226,6 +315,122 @@
 				3BB7A83E /* TabSwitcher.swift */,
 			);
 			path = iOS;
+			sourceTree = "<group>";
+		};
+		3BB7A8D0 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				3BB7A867 /* Logger.swift */,
+				3BB7A869 /* Analytics.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		3BB7A8D1 /* Shared */ = { isa = PBXGroup; children = (); path = Shared; sourceTree = "<group>"; };
+		3BB7A8D2 /* Privacy */ = { isa = PBXGroup; children = (); path = Privacy; sourceTree = "<group>"; };
+		3BB7A8D3 /* Storage */ = { isa = PBXGroup; children = (); path = Storage; sourceTree = "<group>"; };
+		3BB7A8D4 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				3BB7A820 /* PersistenceProvider.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		3BB7A8D5 /* Downloads */ = {
+			isa = PBXGroup;
+			children = (
+				3BB7A822 /* DownloadManager.swift */,
+			);
+			path = Downloads;
+			sourceTree = "<group>";
+		};
+		3BB7A8D6 /* History */ = { isa = PBXGroup; children = (); path = History; sourceTree = "<group>"; };
+		3BB7A8D7 /* Bookmarks */ = { isa = PBXGroup; children = (); path = Bookmarks; sourceTree = "<group>"; };
+		3BB7A8D8 /* ReadingList */ = { isa = PBXGroup; children = (); path = ReadingList; sourceTree = "<group>"; };
+		3BB7A8D9 /* Profiles */ = { isa = PBXGroup; children = (); path = Profiles; sourceTree = "<group>"; };
+		3BB7A8DA /* Sessions */ = {
+			isa = PBXGroup;
+			children = (
+				3BB7A82A /* SessionManager.swift */,
+			);
+			path = Sessions;
+			sourceTree = "<group>";
+		};
+		3BB7A8DB /* Workspaces */ = { isa = PBXGroup; children = (); path = Workspaces; sourceTree = "<group>"; };
+		3BB7A8DC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3BB7A859 /* ExtensionManager.swift */,
+				3BB7A85B /* ExtensionGenerator.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3BB7A8DD /* CustomSites */ = { isa = PBXGroup; children = (); path = CustomSites; sourceTree = "<group>"; };
+		3BB7A8DE /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				3BB7A824 /* SearchProviderManager.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		3BB7A8DF /* Settings */ = { isa = PBXGroup; children = (); path = Settings; sourceTree = "<group>"; };
+		3BB7A8E0 /* Themes */ = { isa = PBXGroup; children = (); path = Themes; sourceTree = "<group>"; };
+		3BB7A8E1 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				3BB7A828 /* TabManager.swift */,
+				3BB7A845 /* WorkspaceManager.swift */,
+				3BB7A847 /* SiteInspector.swift */,
+				3BB7A84D /* MultiWindowManager.swift */,
+				3BB7A84F /* AudioSettingsManager.swift */,
+				3BB7A87F /* ShortcutManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		3BB7A8E2 /* Services */ = { isa = PBXGroup; children = (); path = Services; sourceTree = "<group>"; };
+		3BB7A8E3 /* Protocols */ = { isa = PBXGroup; children = (); path = Protocols; sourceTree = "<group>"; };
+		3BB7A8E4 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				3BB7A853 /* CustomSiteViewModel.swift */,
+				3BB7A85D /* BrowserViewModel.swift */,
+				3BB7A85F /* AISettingsViewModel.swift */,
+				3BB7A861 /* LibraryViewModel.swift */,
+				3BB7A873 /* CommandPaletteViewModel.swift */,
+				3BB7A877 /* StartPageViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		3BB7A8E5 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3BB7A84B /* BrowserUtilities.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		3BB7A8E6 /* Diagnostics */ = { isa = PBXGroup; children = (); path = Diagnostics; sourceTree = "<group>"; };
+		3BB7A8E7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3BB7A804 /* Assets.xcassets */,
+				3BB7A8B4 /* Info.plist */,
+				3BB7A8B0 /* en.lproj */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3BB7A8B0 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				3BB7A865 /* Localizable.strings */,
+			);
+			path = en.lproj;
 			sourceTree = "<group>";
 		};
 /* END PBXGroup */
@@ -286,6 +491,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BB7A803 /* Assets.xcassets in Resources */,
+				3BB7A864 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,10 +528,42 @@
 				3BB7A831 /* MainWindowView.swift in Sources */,
 				3BB7A833 /* MainTabView.swift in Sources */,
 				3BB7A835 /* SettingsView.swift in Sources */,
-				3BB7A837 /* BookmarkManagerView.swift in Sources */,
-				3BB7A839 /* HistoryManagerView.swift in Sources */,
-				3BB7A83B /* DownloadManagerView.swift in Sources */,
 				3BB7A83D /* TabSwitcher.swift in Sources */,
+				3BB7A890 /* PromptLibrary.swift in Sources */,
+				3BB7A892 /* ContextManager.swift in Sources */,
+				3BB7A894 /* AIRateLimiter.swift in Sources */,
+				3BB7A896 /* AITokenEstimator.swift in Sources */,
+				3BB7A898 /* AIErrorHandler.swift in Sources */,
+				3BB7A89A /* ResponseParser.swift in Sources */,
+				3BB7A840 /* Workspace.swift in Sources */,
+				3BB7A842 /* SessionSnapshot.swift in Sources */,
+				3BB7A844 /* WorkspaceManager.swift in Sources */,
+				3BB7A846 /* SiteInspector.swift in Sources */,
+				3BB7A848 /* SitePermission.swift in Sources */,
+				3BB7A84A /* BrowserUtilities.swift in Sources */,
+				3BB7A84C /* MultiWindowManager.swift in Sources */,
+				3BB7A84E /* AudioSettingsManager.swift in Sources */,
+				3BB7A850 /* CustomSite.swift in Sources */,
+				3BB7A852 /* CustomSiteViewModel.swift in Sources */,
+				3BB7A854 /* CustomSiteEditorView.swift in Sources */,
+				3BB7A856 /* BrowserExtension.swift in Sources */,
+				3BB7A858 /* ExtensionManager.swift in Sources */,
+				3BB7A85A /* ExtensionGenerator.swift in Sources */,
+				3BB7A85C /* BrowserViewModel.swift in Sources */,
+				3BB7A85E /* AISettingsViewModel.swift in Sources */,
+				3BB7A860 /* LibraryViewModel.swift in Sources */,
+				3BB7A862 /* LibraryViews.swift in Sources */,
+				3BB7A86A /* SitePermissionsDashboard.swift in Sources */,
+				3BB7A86C /* PageInfoView.swift in Sources */,
+				3BB7A86E /* UtilityToolsView.swift in Sources */,
+				3BB7A870 /* ExtensionManagerView.swift in Sources */,
+				3BB7A872 /* CommandPaletteViewModel.swift in Sources */,
+				3BB7A874 /* CommandPaletteView.swift in Sources */,
+				3BB7A876 /* StartPageViewModel.swift in Sources */,
+				3BB7A878 /* StartPageView.swift in Sources */,
+				3BB7A87A /* WebsiteAnnotation.swift in Sources */,
+				3BB7A87C /* WebsiteAnnotationView.swift in Sources */,
+				3BB7A87E /* ShortcutManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,7 +653,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Browse/Info.plist;
+				INFOPLIST_FILE = Browse/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -433,7 +671,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Browse/Info.plist;
+				INFOPLIST_FILE = Browse/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -443,27 +681,6 @@
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
-		};
-/* END XCBuildConfiguration */
-
-/* BEGIN XCConfigurationList */
-		3BB7A8A8 /* Build configuration list for PBXProject "Browse" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3BB7A8F1 /* Debug */,
-				3BB7A8F2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3BB7A8F3 /* Build configuration list for PBXNativeTarget "Browse" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3BB7A8F4 /* Debug */,
-				3BB7A8F5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* END XCConfigurationList */
 	};

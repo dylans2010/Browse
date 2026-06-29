@@ -12,7 +12,7 @@ struct AIPanelView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("AI Assistant")
+                Text(LocalizedStringKey("AI_ASSISTANT"))
                     .font(.headline)
                 Spacer()
                 Picker("Model", selection: $modelManager.selectedModel) {
@@ -26,10 +26,14 @@ struct AIPanelView: View {
 
             if let tab = activeTab {
                 HStack {
-                    Button("Summarize Page") { summarizePage(tab) }
-                        .buttonStyle(.bordered)
-                    Button("Explain Page") { explainPage(tab) }
-                        .buttonStyle(.bordered)
+                    Button(action: { summarizePage(tab) }) {
+                        Text(LocalizedStringKey("SUMMARIZE_PAGE"))
+                    }
+                    .buttonStyle(.bordered)
+                    Button(action: { explainPage(tab) }) {
+                        Text(LocalizedStringKey("EXPLAIN_PAGE"))
+                    }
+                    .buttonStyle(.bordered)
                 }
                 .padding(.horizontal)
             }
@@ -56,7 +60,7 @@ struct AIPanelView: View {
             Divider()
 
             HStack {
-                TextField("Ask AI...", text: $inputText)
+                TextField(LocalizedStringKey("ASK_AI"), text: $inputText)
                     .textFieldStyle(.roundedBorder)
                     .onSubmit { sendMessage() }
 
@@ -65,6 +69,7 @@ struct AIPanelView: View {
                         .font(.title2)
                 }
                 .disabled(inputText.isEmpty || streamingManager.isStreaming)
+                .accessibilityLabel("Send message")
             }
             .padding()
         }
@@ -74,7 +79,7 @@ struct AIPanelView: View {
     private func summarizePage(_ tab: TabManager.Tab) {
         Task {
             let content = try? await tab.webPage.getPageContent()
-            let prompt = PromptBuilder.build(.summarize(content: content ?? ""))
+            let prompt = PromptBuilder.build(.summarizePage(content: content ?? ""))
             sendAIRequest(prompt)
         }
     }
@@ -82,7 +87,7 @@ struct AIPanelView: View {
     private func explainPage(_ tab: TabManager.Tab) {
         Task {
             let content = try? await tab.webPage.getPageContent()
-            let prompt = PromptBuilder.build(.explain(content: content ?? ""))
+            let prompt = PromptBuilder.build(.explainPage(content: content ?? ""))
             sendAIRequest(prompt)
         }
     }
@@ -101,7 +106,7 @@ struct AIPanelView: View {
 
         Task {
             do {
-                let stream = aiService.client.stream(model: modelManager.selectedModel, messages: conversationManager.messages)
+                let stream = aiService.stream(model: modelManager.selectedModel, messages: conversationManager.messages)
                 for try await chunk in stream {
                     streamingManager.append(chunk)
                 }
@@ -130,5 +135,7 @@ struct MessageBubble: View {
 
             if message.role != "user" { Spacer() }
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(message.role == "user" ? "You" : "AI"): \(message.content)")
     }
 }
