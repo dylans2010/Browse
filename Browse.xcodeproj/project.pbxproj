@@ -141,7 +141,6 @@
 		CE8CF0490491003CB43ACACA /* Workspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0675176D97BBCC66B9BF173B /* Workspace.swift */; };
 		739D45347FFEAA073B2E42A6 /* WorkspaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C00B9012222EA1FFC5D56B6 /* WorkspaceManager.swift */; };
 		5BDD1287B51353887E40A467 /* WorkspaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A210C797FF7775614572B222 /* WorkspaceViewModel.swift */; };
-		324FDD9737DA425D06852ABF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2FCD68378FAACAE5DBAA38C /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -280,7 +279,6 @@
 		0675176D97BBCC66B9BF173B /* Workspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workspace.swift; sourceTree = "<group>"; };
 		9C00B9012222EA1FFC5D56B6 /* WorkspaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceManager.swift; sourceTree = "<group>"; };
 		A210C797FF7775614572B222 /* WorkspaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceViewModel.swift; sourceTree = "<group>"; };
-		E2FCD68378FAACAE5DBAA38C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8923F6EC6DB9CFA5CC3E4F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -338,7 +336,6 @@
 				5A6928763315D60C7A7DDDDF /* Utilities */,
 				5B1F9B370DB43E41049D5D0F /* Views */,
 				0CF7DF03F170F5B476B718C2 /* Workspaces */,
-				E2FCD68378FAACAE5DBAA38C /* Assets.xcassets */,
 				C8923F6EC6DB9CFA5CC3E4F5 /* Info.plist */,
 			);
 			path = Browse;
@@ -1024,7 +1021,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				324FDD9737DA425D06852ABF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1179,7 +1175,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1230,8 +1225,6 @@
 		1370745092E04C3C857086CE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1258,7 +1251,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1317,8 +1309,6 @@
 		FA6CDD22CF224502B1F2F07C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
