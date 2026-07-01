@@ -17,47 +17,11 @@ struct ReadingListView: View {
                 )
             } else {
                 ForEach(viewModel.items) { item in
-                    HStack(spacing: 12) {
-                        Image(systemName: item.isRead ? "bookmark" : "bookmark.fill")
-                            .foregroundStyle(item.isRead ? .secondary : .blue)
-
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(item.title)
-                                .font(.headline)
-                                .foregroundStyle(item.isRead ? .secondary : .primary)
-                            Text(item.url.absoluteString)
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                                .lineLimit(1)
-                        }
-
-                        Spacer()
-
-                        if item.isRead {
-                            Text("Read")
-                                .font(.caption2)
-                                .foregroundStyle(.secondary)
-                        }
-                    }
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        viewModel.toggleRead(item)
-                    }
-                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                        Button(role: .destructive) {
-                            viewModel.remove(item)
-                        } label: {
-                            Label("Delete", systemImage: "trash")
-                        }
-                    }
-                    .swipeActions(edge: .leading) {
-                        Button {
-                            viewModel.toggleRead(item)
-                        } label: {
-                            Label(item.isRead ? "Unread" : "Read", systemImage: item.isRead ? "bookmark" : "bookmark.fill")
-                        }
-                        .tint(item.isRead ? .orange : .green)
-                    }
+                    ReadingListRow(
+                        item: item,
+                        toggleRead: { viewModel.toggleRead(item) },
+                        remove: { viewModel.remove(item) }
+                    )
                 }
             }
         }
@@ -120,5 +84,73 @@ struct ReadingListView: View {
     private func resetAddForm() {
         newURLString = ""
         newTitle = ""
+    }
+}
+
+private struct ReadingListRow: View {
+    let item: ReadingListItem
+    let toggleRead: () -> Void
+    let remove: () -> Void
+
+    private var bookmarkImageName: String {
+        item.isRead ? "bookmark" : "bookmark.fill"
+    }
+
+    private var bookmarkColor: Color {
+        item.isRead ? .secondary : .blue
+    }
+
+    private var titleColor: Color {
+        item.isRead ? .secondary : .primary
+    }
+
+    private var readActionTitle: String {
+        item.isRead ? "Unread" : "Read"
+    }
+
+    private var readActionImageName: String {
+        item.isRead ? "bookmark" : "bookmark.fill"
+    }
+
+    private var readActionTint: Color {
+        item.isRead ? .orange : .green
+    }
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Image(systemName: bookmarkImageName)
+                .foregroundStyle(bookmarkColor)
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text(item.title)
+                    .font(.headline)
+                    .foregroundStyle(titleColor)
+                Text(item.url.absoluteString)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+            }
+
+            Spacer()
+
+            if item.isRead {
+                Text("Read")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .contentShape(Rectangle())
+        .onTapGesture(perform: toggleRead)
+        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+            Button(role: .destructive, action: remove) {
+                Label("Delete", systemImage: "trash")
+            }
+        }
+        .swipeActions(edge: .leading) {
+            Button(action: toggleRead) {
+                Label(readActionTitle, systemImage: readActionImageName)
+            }
+            .tint(readActionTint)
+        }
     }
 }
