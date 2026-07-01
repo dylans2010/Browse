@@ -43,6 +43,12 @@ struct MainWindowView: View {
                             Image(systemName: "sparkles")
                                 .foregroundColor(isShowingAISidebar ? .blue : .primary)
                         }
+
+                        NavigationLink {
+                            SettingsView(aiSettings: AISettings(), activeWebView: tabManager.activeTab?.webPage.webView, profileId: tabManager.activeTab?.item.profileId)
+                        } label: {
+                            Image(systemName: "gear")
+                        }
                     }
                     .padding()
 
@@ -74,7 +80,6 @@ struct MainWindowView: View {
         }
         .onAppear {
             if tabManager.tabs.isEmpty {
-                // Fixed: use the stored default profile instead of a random UUID.
                 let profileId = profiles.first?.id ?? UUID()
                 tabManager.createTab(url: URL(string: "https://www.apple.com"), profileId: profileId)
             }

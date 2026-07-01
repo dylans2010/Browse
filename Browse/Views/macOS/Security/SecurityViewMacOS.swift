@@ -2,7 +2,7 @@ import SwiftUI
 import WebKit
 
 struct SecurityView: View {
-    @State var viewModel: SecurityViewModel
+    @State var viewModel = SecurityViewModel()
     var webView: WKWebView?
 
     var body: some View {
@@ -32,6 +32,5 @@ struct SecurityView: View {
                 await viewModel.refresh(webView: webView)
             }
         }
-        .frame(minWidth: 400)
     }
 }
