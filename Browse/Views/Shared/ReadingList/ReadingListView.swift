@@ -41,9 +41,7 @@ struct ReadingListView: View {
                     Section("Page") {
                         TextField("Title", text: $newTitle)
                         TextField("URL", text: $newURLString)
-                            .textInputAutocapitalization(.never)
-                            .keyboardType(.URL)
-                            .autocorrectionDisabled()
+                            .urlEntryInputStyle()
                     }
                 }
                 .navigationTitle("Add to Reading List")
@@ -152,5 +150,21 @@ private struct ReadingListRow: View {
             }
             .tint(readActionTint)
         }
+    }
+}
+
+
+private extension View {
+    @ViewBuilder
+    func urlEntryInputStyle() -> some View {
+#if os(iOS)
+        self
+            .textInputAutocapitalization(.never)
+            .keyboardType(.URL)
+            .autocorrectionDisabled()
+#else
+        self
+            .autocorrectionDisabled()
+#endif
     }
 }
