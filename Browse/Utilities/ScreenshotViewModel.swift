@@ -1,6 +1,7 @@
 import Foundation
 import Observation
 import SwiftUI
+import WebKit
 
 @Observable
 final class ScreenshotViewModel {
