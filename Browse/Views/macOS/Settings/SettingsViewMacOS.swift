@@ -1,9 +1,12 @@
 import SwiftUI
+import WebKit
 
 struct SettingsView: View {
     @Bindable var aiSettings: AISettings
     @State private var apiKey: String = ""
     @Environment(\.modelContext) private var modelContext
+    let activeWebView: WKWebView?
+    let profileId: UUID?
 
     var body: some View {
         Form {
@@ -44,6 +47,24 @@ struct SettingsView: View {
                             }
                         }
                     }
+                }
+            }
+
+            Section("Tools") {
+                NavigationLink("Diagnostics") {
+                    DiagnosticsView(viewModel: DiagnosticsViewModel(), webView: activeWebView)
+                }
+                NavigationLink("Profiles") {
+                    ProfilesView()
+                }
+                NavigationLink("Privacy") {
+                    PrivacyView()
+                }
+                NavigationLink("Security") {
+                    SecurityView(webView: activeWebView)
+                }
+                NavigationLink("Themes") {
+                    ThemesView(profileId: profileId)
                 }
             }
         }

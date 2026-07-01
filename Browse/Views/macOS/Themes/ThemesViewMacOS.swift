@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct ThemesView: View {
-    @State var viewModel: ThemeViewModel
-    var profileId: UUID
+    @State var viewModel = ThemeViewModel()
+    var profileId: UUID?
 
     var body: some View {
         Form {
@@ -12,12 +12,15 @@ struct ThemesView: View {
                         Text(item)
                     }
                 } else {
-                    Text("Loading configuration...")
+                    Text("Select a profile to view configuration.")
                 }
             }
         }
         .navigationTitle("Themes & UI")
-        .onAppear { viewModel.loadConfig(for: profileId) }
-        .frame(minWidth: 300)
+        .onAppear {
+            if let profileId = profileId {
+                viewModel.loadConfig(for: profileId)
+            }
+        }
     }
 }
