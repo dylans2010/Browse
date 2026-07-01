@@ -302,25 +302,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080FA3C962EE4B7B8B7A1155 /*  */ = {
+		080FA3C962EE4B7B8B7A1155 = {
 			isa = PBXGroup;
 			children = (
-				18D0BCF110F043B69BD6214C /*  */,
-				AF3687E40C1C44E0ABDA61F3 /*  */,
-				7E176D9D50BD41699B0DD98B /*  */,
+				18D0BCF110F043B69BD6214C,
+				AF3687E40C1C44E0ABDA61F3,
+				7E176D9D50BD41699B0DD98B,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
-		0E452F9927C34E6D93A4F04B /*  */ = {
+		0E452F9927C34E6D93A4F04B = {
 			isa = PBXGroup;
 			children = (
 				4DCF837F61D44F8D9CC73157 /* Browse/App/BrowseApp.swift */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
-		18D0BCF110F043B69BD6214C /*  */ = {
+		18D0BCF110F043B69BD6214C = {
 			isa = PBXGroup;
 			children = (
 				CD2E78296C644444BE9D6D62 /* Browse/Views/Shared/Bookmarks/BookmarkManagerView.swift */,
@@ -330,7 +328,6 @@
 				2E3F4C1C3CC649949AB7A1F5 /* Browse/Views/Shared/Workspaces/WorkspaceListView.swift */,
 				B0C1D2E3F40516273849A5B6 /* Browse/Views/Shared/ReadingList/ReadingListView.swift */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		18D9E6AAD4CF4AFABC8952F6 /* Products */ = {
@@ -345,48 +342,44 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2806AAF154FE43C5AFDBC15A /*  */ = {
+		2806AAF154FE43C5AFDBC15A = {
 			isa = PBXGroup;
 			children = (
 				3007432D07714C9286756029 /* Browse/Downloads/DownloadManager.swift */,
 				966171EBBFEB44DDB8CBB14A /* Browse/Search/SearchProviderManager.swift */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		2AC6E38372954E13906160FB = {
 			isa = PBXGroup;
 			children = (
-				92CA02112920426FBBFFEADD /*  */,
+				92CA02112920426FBBFFEADD,
 				18D9E6AAD4CF4AFABC8952F6 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		39C950035582426F95B40B9B /*  */ = {
+		39C950035582426F95B40B9B = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
-		3EEC389E4948465383B9EFE0 /*  */ = {
+		3EEC389E4948465383B9EFE0 = {
 			isa = PBXGroup;
 			children = (
 				F5C1F34311094F1BAB887481 /* Browse/Security/KeychainManager.swift */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
-		64A6773A5931490694D8094C /*  */ = {
+		64A6773A5931490694D8094C = {
 			isa = PBXGroup;
 			children = (
 				64473EC1370F478D8116B143 /* Browse/Browser/TabManager.swift */,
 				DDE0375381C24B48915E35C8 /* Browse/Browser/SessionManager.swift */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
-		7E176D9D50BD41699B0DD98B /*  */ = {
+		7E176D9D50BD41699B0DD98B = {
 			isa = PBXGroup;
 			children = (
 				7FC85DC0C8994FE9B0D26F11 /* Browse/Views/iOS/Browser/SidebarViewIOS.swift */,
@@ -406,10 +399,9 @@
 				130A3C01909F4925978F5AEC /* Browse/Views/iOS/Browser/MainTabView.swift */,
 				F7D1E85438DB4FBA8B6635C8 /* Browse/Views/iOS/Browser/Tabs/TabSwitcher.swift */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
-		92CA02112920426FBBFFEADD /*  */ = {
+		92CA02112920426FBBFFEADD = {
 			isa = PBXGroup;
 			children = (
 				493555146B12420180BB01FA /* Browse/Extensions/ExtensionRuntime.swift */,
@@ -490,22 +482,21 @@
 				4E0BD44451F94FC691D4C1BE /* Browse/AI/AITokenEstimator.swift */,
 				870441F09FA44A0091C78CD2 /* Browse/Core/AnalyticsService.swift */,
 				8EA6D27A6DEC401CBC741B8D /* Browse/Core/LoggingService.swift */,
-				0E452F9927C34E6D93A4F04B /*  */,
-				3EEC389E4948465383B9EFE0 /*  */,
-				E073D53272B44711B8EE8CA3 /*  */,
-				A104F9DA82714D05BBD66915 /*  */,
-				F7EEBAED23794B46906178E6 /*  */,
-				2806AAF154FE43C5AFDBC15A /*  */,
-				39C950035582426F95B40B9B /*  */,
-				64A6773A5931490694D8094C /*  */,
-				080FA3C962EE4B7B8B7A1155 /*  */,
+				0E452F9927C34E6D93A4F04B,
+				3EEC389E4948465383B9EFE0,
+				E073D53272B44711B8EE8CA3,
+				A104F9DA82714D05BBD66915,
+				F7EEBAED23794B46906178E6,
+				2806AAF154FE43C5AFDBC15A,
+				39C950035582426F95B40B9B,
+				64A6773A5931490694D8094C,
+				080FA3C962EE4B7B8B7A1155,
 				FF86855548EA487AAAB003A7 /* Browse/Assets.xcassets */,
 				ABC030666287470099A9E8BA /* Browse/Info.plist */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
-		A104F9DA82714D05BBD66915 /*  */ = {
+		A104F9DA82714D05BBD66915 = {
 			isa = PBXGroup;
 			children = (
 				E47C0D5DE5F34D5EACCE45FE /* Browse/History/HistoryItem.swift */,
@@ -514,10 +505,9 @@
 				3FE3193049C1433E86ACBDB2 /* Browse/Profiles/Profile.swift */,
 				AD527431236A43B581FA33CD /* Browse/Downloads/DownloadItem.swift */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
-		AF3687E40C1C44E0ABDA61F3 /*  */ = {
+		AF3687E40C1C44E0ABDA61F3 = {
 			isa = PBXGroup;
 			children = (
 				30BE7E693ABA4149B095658D /* Browse/Views/macOS/Browser/SidebarViewMacOS.swift */,
@@ -536,10 +526,9 @@
 				D14F970491CF4E31953CE0BC /* Browse/Views/macOS/Sessions/SessionsViewMacOS.swift */,
 				68DAA6D3130F4F498C7CC834 /* Browse/Views/macOS/Browser/MainWindowView.swift */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
-		E073D53272B44711B8EE8CA3 /*  */ = {
+		E073D53272B44711B8EE8CA3 = {
 			isa = PBXGroup;
 			children = (
 				850D11772F83413DAB691FE6 /* Browse/AI/OpenRouterClient.swift */,
@@ -550,15 +539,13 @@
 				52FFF5461D0B4798B998FFE8 /* Browse/AI/ModelManager.swift */,
 				15F3342C38BC471AAF90C0E6 /* Browse/AI/AISettings.swift */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
-		F7EEBAED23794B46906178E6 /*  */ = {
+		F7EEBAED23794B46906178E6 = {
 			isa = PBXGroup;
 			children = (
 				5C500AE350C546A396A4F053 /* Browse/Persistence/Services/PersistenceProvider.swift */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -831,6 +818,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -843,6 +831,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dylans2010.Browse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx27.0;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
@@ -916,6 +905,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -928,6 +918,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dylans2010.Browse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx27.0;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
