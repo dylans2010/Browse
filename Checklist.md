@@ -165,3 +165,37 @@
 - [x] Performance optimization (Retain cycles, memory leaks)
 - [x] Xcode Project registration check (No orphan files)
 - [x] Final Audit
+
+## Views Reorg & Subsystem Completion (AED-BROWSE-VIEWS-002)
+
+### Phase 1 — Project Relocation
+- [x] `Browse.xcodeproj` moved to repository root (sibling of `Browse/`); `Browse/Browse.xcodeproj` no longer exists (CAF-14 clear)
+- [x] Every `<group>` `PBXFileReference` path re-prefixed with `Browse/` for the new SRCROOT
+- [x] `INFOPLIST_FILE = Browse/Info.plist` verified correct against new root
+- [x] No CI workflows / shared schemes referenced the old path (none exist)
+
+### Phase 2 — View Migration
+- [x] Inventoried every View-conforming / representable file in the repo
+- [x] Relocated pure SwiftUI views into `Browse/Views/Shared/<Feature>/` (AIPanel, BookmarkManager, DownloadManager, ExtensionManager, HistoryManager, WorkspaceList, CustomSiteEditor, Sidebar)
+- [x] Split platform-divergent views into per-platform files, each top-level `#if os(...)`-guarded (single-target project):
+    - `AddressBarView` → `Views/iOS/Browser/AddressBarViewIOS.swift` + `Views/macOS/Browser/AddressBarViewMacOS.swift`
+    - `WebView` → `Views/iOS/Browser/WebViewIOS.swift` + `Views/macOS/Browser/WebViewMacOS.swift`
+    - `SettingsView` → `Views/iOS/Settings/SettingsViewIOS.swift` + `Views/macOS/Settings/SettingsViewMacOS.swift`
+- [x] Extracted `WebPageManager` logic out of `WebView.swift` into `Browser/Managers/WebPageManager.swift` (logic-only)
+- [x] Zero View-conforming files remain outside `Browse/Views/` (CAF-10 clear)
+- [x] Zero loose `.swift` directly under `Browse/Views/` (CAF-11 clear)
+
+### Phase 3 — Directory Declutter
+- [x] Removed all now-empty module `Views/` folders (AI, Bookmarks, Downloads, Extensions, History, Workspaces, CustomSites, Settings, Browser)
+
+### Integrity (VIR)
+- [x] `plutil -lint Browse.xcodeproj/project.pbxproj` exits 0
+- [x] `Views/Shared/` contains zero `#if os()`, `import UIKit`, `import AppKit` (CAF-12 clear)
+- [x] No duplicated / orphaned `PBXFileReference` / `PBXBuildFile` entries (CAF-13 clear); every registered path resolves on disk
+- [x] Split files re-parented in `PBXGroup` + `PBXSourcesBuildPhase`; old entries removed (not duplicated)
+
+### Deferred (not verifiable in this environment — follow-up)
+- [ ] Phase 4 — per-feature iOS/macOS completeness trace (Non-Functional File Test)
+- [ ] Phase 5 — CustomSites end-to-end visual ⇄ CSS sync verification on both platforms
+- [ ] Phase 6 — Extensions generate → install → sandbox-execute verification on both platforms
+- [ ] Phase 8 gates — `xcodebuild build`/`test` exit 0 on iOS and macOS (no simulator/scheme in this environment)

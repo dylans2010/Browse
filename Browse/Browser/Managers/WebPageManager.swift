@@ -1,23 +1,5 @@
-import SwiftUI
+import Foundation
 import WebKit
-
-#if os(macOS)
-typealias ViewRepresentable = NSViewRepresentable
-#else
-typealias ViewRepresentable = UIViewRepresentable
-#endif
-
-struct WebView: ViewRepresentable {
-    let webView: WKWebView
-
-    #if os(macOS)
-    func makeNSView(context: Context) -> WKWebView { return webView }
-    func updateNSView(_ nsView: WKWebView, context: Context) {}
-    #else
-    func makeUIView(context: Context) -> WKWebView { return webView }
-    func updateUIView(_ uiView: WKWebView, context: Context) {}
-    #endif
-}
 
 @Observable
 final class WebPageManager: NSObject, WKNavigationDelegate, WKUIDelegate {

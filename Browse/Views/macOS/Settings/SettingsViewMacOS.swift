@@ -1,4 +1,6 @@
+#if os(macOS)
 import SwiftUI
+import AppKit
 
 struct SettingsView: View {
     @Bindable var aiSettings: AISettings
@@ -29,13 +31,7 @@ struct SettingsView: View {
                 Button("Export Browser Data") {
                     Task {
                         if let url = try? await DataPortabilityManager.shared.exportData() {
-                            #if os(iOS)
-                            let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-                            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                               let rootVC = scene.windows.first?.rootViewController {
-                                rootVC.present(activityVC, animated: true)
-                            }
-                            #endif
+                            NSWorkspace.shared.activateFileViewerSelecting([url])
                         }
                     }
                 }
@@ -47,3 +43,4 @@ struct SettingsView: View {
         }
     }
 }
+#endif

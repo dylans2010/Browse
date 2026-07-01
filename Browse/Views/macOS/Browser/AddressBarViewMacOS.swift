@@ -1,3 +1,4 @@
+#if os(macOS)
 import SwiftUI
 
 struct AddressBarView: View {
@@ -10,11 +11,7 @@ struct AddressBarView: View {
     var onReload: () -> Void
 
     private var backgroundColor: Color {
-        #if os(macOS)
-        return Color(NSColor.controlBackgroundColor)
-        #else
-        return Color(uiColor: .secondarySystemBackground)
-        #endif
+        Color(NSColor.controlBackgroundColor)
     }
 
     var body: some View {
@@ -43,11 +40,6 @@ struct AddressBarView: View {
 
                 TextField("Search or enter address", text: $text)
                     .textFieldStyle(.plain)
-                    #if os(iOS)
-                    .textInputAutocapitalization(.never)
-                    .keyboardType(.URL)
-                    .autocorrectionDisabled()
-                    #endif
                     .onSubmit {
                         onCommit()
                     }
@@ -78,3 +70,4 @@ struct AddressBarView: View {
         )
     }
 }
+#endif
