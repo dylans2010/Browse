@@ -152,7 +152,7 @@ private extension SettingsViewMacOS {
 
 /// Wraps the editor and loads the site configuration once the view appears.
 private struct CustomSiteDestinationView: View {
-    @StateObject private var viewModel = CustomSiteViewModel()
+    @State private var viewModel = CustomSiteViewModel()
     let host: String
     
     var body: some View {
