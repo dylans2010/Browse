@@ -29,6 +29,6 @@ final class ExtensionGenerator {
             throw AIError.invalidResponse
         }
 
-        return try JSONDecoder().decode(ExtensionResult.self, data: data)
+        return try JSONDecoder().decode(ExtensionResult.self, from: data)
     }
 }

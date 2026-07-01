@@ -15,7 +15,7 @@ final class ExtensionManager {
     }
 
     func installExtension(name: String, script: String, manifest: String) {
-        let ext = BrowserExtension(name: name, scriptSource: script, manifestJSON: manifest)
+        let ext = BrowserExtension(name: name, manifestJSON: manifest, scriptSource: script)
         context.insert(ext)
         try? context.save()
         fetchExtensions()

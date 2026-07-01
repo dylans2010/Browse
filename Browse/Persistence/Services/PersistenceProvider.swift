@@ -41,6 +41,8 @@ final class PersistenceProvider {
     }
 
     var mainContext: ModelContext {
-        container.mainContext
+        MainActor.assumeIsolated {
+            container.mainContext
+        }
     }
 }
