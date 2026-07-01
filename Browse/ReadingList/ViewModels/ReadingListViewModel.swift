@@ -14,4 +14,12 @@ final class ReadingListViewModel {
     func add(url: URL, title: String) {
         manager.addItem(url: url, title: title)
     }
+
+    func toggleRead(_ item: ReadingListItem) {
+        manager.updateItem(item, isRead: !item.isRead)
+    }
+
+    func remove(_ item: ReadingListItem) {
+        manager.deleteItem(item)
+    }
 }

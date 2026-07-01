@@ -122,7 +122,8 @@
 		6011D181B0654856AEF2AA4D /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF336B65BA406C9DAD7E17 /* SessionViewModel.swift */; };
 		084700DAB74C4BD697E370DD /* SessionSnapshotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD109EC24CDD4159950C2F9B /* SessionSnapshotManager.swift */; };
 		A9365F25371A4EB0A0734154 /* SessionSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0E9EAE0A0347F2AE16CAF8 /* SessionSnapshot.swift */; };
-		719C24E35D8F4A349517FB3F /* WorkspaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3F4C1C3CC649949AB7A1F5 /* WorkspaceListView.swift *; };
+		719C24E35D8F4A349517FB3F /* WorkspaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3F4C1C3CC649949AB7A1F5 /* WorkspaceListView.swift */; };
+		A0F1B2C3D4E5F60718293A4B /* ReadingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1D2E3F40516273849A5B6 /* ReadingListView.swift */; };
 		CBE18FB3E960412FB4E08184 /* WorkspaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031CF38CCE464AF68C0825A0 /* WorkspaceViewModel.swift */; };
 		FA5DCEC68714490D9768C44C /* WorkspaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615C40E9B4A4470199F4B357 /* WorkspaceManager.swift */; };
 		F0431E028BE24B2FBF8A763D /* Workspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EB2C328143403495B615AB /* Workspace.swift */; };
@@ -284,7 +285,8 @@
 		44DF336B65BA406C9DAD7E17 /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browse/Sessions/SessionViewModel.swift; sourceTree = "<group>"; };
 		AD109EC24CDD4159950C2F9B /* SessionSnapshotManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browse/Sessions/SessionSnapshotManager.swift; sourceTree = "<group>"; };
 		AA0E9EAE0A0347F2AE16CAF8 /* SessionSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browse/Sessions/SessionSnapshot.swift; sourceTree = "<group>"; };
-		2E3F4C1C3CC649949AB7A1F5 /* WorkspaceListView.swift * = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browse/Views/Shared/Workspaces/WorkspaceListView.swift; sourceTree = "<group>"; };
+		2E3F4C1C3CC649949AB7A1F5 /* WorkspaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browse/Views/Shared/Workspaces/WorkspaceListView.swift; sourceTree = "<group>"; };
+		B0C1D2E3F40516273849A5B6 /* ReadingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browse/Views/Shared/ReadingList/ReadingListView.swift; sourceTree = "<group>"; };
 		031CF38CCE464AF68C0825A0 /* WorkspaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browse/Workspaces/WorkspaceViewModel.swift; sourceTree = "<group>"; };
 		615C40E9B4A4470199F4B357 /* WorkspaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browse/Workspaces/WorkspaceManager.swift; sourceTree = "<group>"; };
 		88EB2C328143403495B615AB /* Workspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browse/Workspaces/Workspace.swift; sourceTree = "<group>"; };
@@ -543,7 +545,8 @@
 				77A23023A61B4E3AB001613F /* DownloadManagerView.swift */,
 				EB5C4C53814F40BAB8EEAEDE /* AIPanelView.swift */,
 				29E2A4F9F93E47C5A781E6B5 /* HistoryManagerView.swift */,
-				2E3F4C1C3CC649949AB7A1F5 /* WorkspaceListView.swift *,
+				2E3F4C1C3CC649949AB7A1F5 /* WorkspaceListView.swift */,
+				B0C1D2E3F40516273849A5B6 /* ReadingListView.swift */,
 );
 			path = "";
 			sourceTree = "<group>";
@@ -853,6 +856,7 @@
 				084700DAB74C4BD697E370DD /* SessionSnapshotManager.swift in Sources */,
 				A9365F25371A4EB0A0734154 /* SessionSnapshot.swift in Sources */,
 				719C24E35D8F4A349517FB3F /* WorkspaceListView.swift in Sources */,
+				A0F1B2C3D4E5F60718293A4B /* ReadingListView.swift in Sources */,
 				CBE18FB3E960412FB4E08184 /* WorkspaceViewModel.swift in Sources */,
 				FA5DCEC68714490D9768C44C /* WorkspaceManager.swift in Sources */,
 				F0431E028BE24B2FBF8A763D /* Workspace.swift in Sources */,

@@ -1,20 +1,6 @@
 import Foundation
 import Observation
 
-struct SearchEngine: Identifiable, Codable {
-    let id: UUID
-    var name: String
-    var searchURL: String
-    var suggestionURL: String?
-
-    static let builtIn: [SearchEngine] = [
-        SearchEngine(id: UUID(), name: "Google", searchURL: "https://www.google.com/search?q=%s"),
-        SearchEngine(id: UUID(), name: "DuckDuckGo", searchURL: "https://duckduckgo.com/?q=%s"),
-        SearchEngine(id: UUID(), name: "Brave", searchURL: "https://search.brave.com/search?q=%s"),
-        SearchEngine(id: UUID(), name: "Bing", searchURL: "https://www.bing.com/search?q=%s")
-    ]
-}
-
 @Observable
 final class SearchProviderManager {
     static let shared = SearchProviderManager()
@@ -45,4 +31,18 @@ final class SearchProviderManager {
         let urlString = selectedEngine.searchURL.replacingOccurrences(of: "%s", with: encodedQuery)
         return URL(string: urlString)
     }
+}
+
+struct SearchEngine: Identifiable, Codable {
+    let id: UUID
+    var name: String
+    var searchURL: String
+    var suggestionURL: String?
+
+    static let builtIn: [SearchEngine] = [
+        SearchEngine(id: UUID(), name: "Google", searchURL: "https://www.google.com/search?q=%s"),
+        SearchEngine(id: UUID(), name: "DuckDuckGo", searchURL: "https://duckduckgo.com/?q=%s"),
+        SearchEngine(id: UUID(), name: "Brave", searchURL: "https://search.brave.com/search?q=%s"),
+        SearchEngine(id: UUID(), name: "Bing", searchURL: "https://www.bing.com/search?q=%s")
+    ]
 }

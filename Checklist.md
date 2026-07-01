@@ -166,6 +166,292 @@
 - [x] Xcode Project registration check (No orphan files)
 - [x] Final Audit
 
+## Verified Audit Findings (Authoritative Open Work)
+
+Audit status: the legacy checked boxes above are retained as historical claims, but the items below are the verified open work that must be completed before this repository can be considered production-ready.
+
+### 1) Reading List Route Is Broken
+- Identification
+    - Feature name: Reading List navigation surface
+    - Subsystem: ReadingList / Browser shell
+    - Current implementation status: complete; the route now points to a real shared Reading List screen
+    - Severity: high
+    - Priority: P0
+- Files
+    - [Browse/Views/iOS/Browser/MainTabView.swift](Browse/Views/iOS/Browser/MainTabView.swift)
+    - [Browse/ReadingList/Managers/ReadingListManager.swift](Browse/ReadingList/Managers/ReadingListManager.swift)
+    - [Browse/ReadingList/ViewModels/ReadingListViewModel.swift](Browse/ReadingList/ViewModels/ReadingListViewModel.swift)
+    - [Browse/ReadingList/Models/ReadingListItem.swift](Browse/ReadingList/Models/ReadingListItem.swift)
+    - Missing Work
+    - None remaining from this audit pass.
+- Dependency Analysis
+    - Dependent files: `MainTabView`, `ReadingListManager`, `ReadingListViewModel`, `PersistenceProvider`.
+    - Impacted features: browser menu navigation, library management, app shell reachability.
+    - Required implementation order: create or wire the view first, then connect shell navigation, then validate persistence loading.
+    - Architectural constraints: reuse existing ReadingList manager/view model; do not introduce parallel reading-list state owners.
+    - Completion Criteria
+    - The browser menu opens a real Reading List screen.
+    - The screen loads persisted items through `ReadingListViewModel`.
+    - Add/remove/read actions are reachable from the UI without placeholder behavior.
+
+### 2) Platform View Identity Is Inconsistent
+- Identification
+    - Feature name: platform-specific SwiftUI view naming
+    - Subsystem: Views / file identity / build graph
+    - Current implementation status: complete; platform-specific types now match their filenames
+    - Severity: high
+    - Priority: P0
+- Files
+    - [Browse/Views/iOS/Browser/AddressBarViewIOS.swift](Browse/Views/iOS/Browser/AddressBarViewIOS.swift)
+    - [Browse/Views/iOS/Browser/SidebarViewIOS.swift](Browse/Views/iOS/Browser/SidebarViewIOS.swift)
+    - [Browse/Views/iOS/Browser/WebViewIOS.swift](Browse/Views/iOS/Browser/WebViewIOS.swift)
+    - [Browse/Views/iOS/Settings/SettingsViewIOS.swift](Browse/Views/iOS/Settings/SettingsViewIOS.swift)
+    - [Browse/Views/iOS/CustomSites/CustomSiteEditorIOS.swift](Browse/Views/iOS/CustomSites/CustomSiteEditorIOS.swift)
+    - [Browse/Views/iOS/Extensions/ExtensionManagerIOS.swift](Browse/Views/iOS/Extensions/ExtensionManagerIOS.swift)
+    - [Browse/Views/iOS/Diagnostics/DiagnosticsViewIOS.swift](Browse/Views/iOS/Diagnostics/DiagnosticsViewIOS.swift)
+    - [Browse/Views/iOS/Privacy/PrivacyViewIOS.swift](Browse/Views/iOS/Privacy/PrivacyViewIOS.swift)
+    - [Browse/Views/iOS/Profiles/ProfilesViewIOS.swift](Browse/Views/iOS/Profiles/ProfilesViewIOS.swift)
+    - [Browse/Views/iOS/Search/SearchViewIOS.swift](Browse/Views/iOS/Search/SearchViewIOS.swift)
+    - [Browse/Views/iOS/Security/SecurityViewIOS.swift](Browse/Views/iOS/Security/SecurityViewIOS.swift)
+    - [Browse/Views/iOS/Sessions/SessionsViewIOS.swift](Browse/Views/iOS/Sessions/SessionsViewIOS.swift)
+    - [Browse/Views/iOS/Themes/ThemesViewIOS.swift](Browse/Views/iOS/Themes/ThemesViewIOS.swift)
+    - [Browse/Views/macOS/Browser/AddressBarViewMacOS.swift](Browse/Views/macOS/Browser/AddressBarViewMacOS.swift)
+    - [Browse/Views/macOS/Browser/SidebarViewMacOS.swift](Browse/Views/macOS/Browser/SidebarViewMacOS.swift)
+    - [Browse/Views/macOS/Browser/WebViewMacOS.swift](Browse/Views/macOS/Browser/WebViewMacOS.swift)
+    - [Browse/Views/macOS/Settings/SettingsViewMacOS.swift](Browse/Views/macOS/Settings/SettingsViewMacOS.swift)
+    - [Browse/Views/macOS/CustomSites/CustomSiteEditorMacOS.swift](Browse/Views/macOS/CustomSites/CustomSiteEditorMacOS.swift)
+    - [Browse/Views/macOS/Extensions/ExtensionManagerMacOS.swift](Browse/Views/macOS/Extensions/ExtensionManagerMacOS.swift)
+    - [Browse/Views/macOS/Diagnostics/DiagnosticsViewMacOS.swift](Browse/Views/macOS/Diagnostics/DiagnosticsViewMacOS.swift)
+    - [Browse/Views/macOS/Privacy/PrivacyViewMacOS.swift](Browse/Views/macOS/Privacy/PrivacyViewMacOS.swift)
+    - [Browse/Views/macOS/Profiles/ProfilesViewMacOS.swift](Browse/Views/macOS/Profiles/ProfilesViewMacOS.swift)
+    - [Browse/Views/macOS/Search/SearchViewMacOS.swift](Browse/Views/macOS/Search/SearchViewMacOS.swift)
+    - [Browse/Views/macOS/Security/SecurityViewMacOS.swift](Browse/Views/macOS/Security/SecurityViewMacOS.swift)
+    - [Browse/Views/macOS/Sessions/SessionsViewMacOS.swift](Browse/Views/macOS/Sessions/SessionsViewMacOS.swift)
+    - [Browse/Views/macOS/Themes/ThemesViewMacOS.swift](Browse/Views/macOS/Themes/ThemesViewMacOS.swift)
+    - Missing Work
+    - None remaining from this audit pass.
+- Dependency Analysis
+    - Dependent files: `BrowseApp`, `MainTabView`, `MainWindowView`, `SettingsViewIOS`, `SettingsViewMacOS`, project source memberships.
+    - Impacted features: every platform-specific UI entry point and all shell navigation.
+    - Required implementation order: normalize the type identities first, then rewire call sites, then validate project compilation.
+    - Architectural constraints: preserve existing directory layout where possible; use one consistent naming convention across Browse.
+- Completion Criteria
+    - No Swift source file declares a primary type that conflicts with its filename.
+    - No duplicate public view type names remain in the target.
+    - All shell references compile against the normalized names.
+
+### 3) AI Panel Bypasses AIService
+- Identification
+    - Feature name: AI assistant panel request handling
+    - Subsystem: AI / browser sidebar
+    - Current implementation status: complete; the panel now calls `AIService`
+    - Severity: high
+    - Priority: P0
+- Files
+    - [Browse/Views/Shared/AI/AIPanelView.swift](Browse/Views/Shared/AI/AIPanelView.swift)
+    - [Browse/AI/AIService.swift](Browse/AI/AIService.swift)
+    - [Browse/AI/OpenRouterClient.swift](Browse/AI/OpenRouterClient.swift)
+    - [Browse/AI/AIContextManager.swift](Browse/AI/AIContextManager.swift)
+    - [Browse/AI/AIRateLimiter.swift](Browse/AI/AIRateLimiter.swift)
+    - [Browse/AI/AIErrorHandler.swift](Browse/AI/AIErrorHandler.swift)
+    - [Browse/AI/AIResponseParser.swift](Browse/AI/AIResponseParser.swift)
+    - Missing Work
+    - None remaining from this audit pass.
+- Dependency Analysis
+    - Dependent files: `AIPanelView`, `ConversationManager`, `StreamingManager`, `ModelManager`, `AIService`.
+    - Impacted features: AI sidebar chat, summarization, explanation actions, error recovery.
+    - Required implementation order: rewire the service boundary first, then verify streaming state and message updates.
+    - Architectural constraints: views must stay UI-only and must not own transport logic.
+- Completion Criteria
+    - UI requests flow through `AIService` only.
+    - Errors are normalized through `AIErrorHandler`.
+    - Context and conversation state are updated after successful requests.
+
+### 4) Tab ViewModel Owns an Isolated Manager
+- Identification
+    - Feature name: tab state ownership
+    - Subsystem: Browser / state management
+    - Current implementation status: complete; the view model now depends on an injected `TabManager`
+    - Severity: medium-high
+    - Priority: P1
+- Files
+    - [Browse/Browser/TabViewModel.swift](Browse/Browser/TabViewModel.swift)
+    - [Browse/Browser/TabManager.swift](Browse/Browser/TabManager.swift)
+    - [Browse/Browser/TabLogicManager.swift](Browse/Browser/TabLogicManager.swift)
+    - [Browse/Views/iOS/Browser/MainTabView.swift](Browse/Views/iOS/Browser/MainTabView.swift)
+    - [Browse/Views/macOS/Browser/MainWindowView.swift](Browse/Views/macOS/Browser/MainWindowView.swift)
+    - Missing Work
+    - None remaining from this audit pass.
+- Dependency Analysis
+    - Dependent files: browser shell, duplicate tab logic, startup management, session capture.
+    - Impacted features: duplicate detection, tab archiving, session recovery, active-tab state.
+    - Required implementation order: fix ownership, then verify any features consuming `tabs` reflect the live browser state.
+    - Architectural constraints: one authoritative tab source per app instance.
+- Completion Criteria
+    - The view model reads and mutates the same tab collection used by the browser shell.
+    - Duplicate cleanup and archive actions reflect live browser tabs.
+
+### 5) Dormant Screens Are Not Reachable From Normal Flow
+- Identification
+    - Feature name: route coverage for dormant feature screens
+    - Subsystem: Browser shell / Settings / Library navigation
+    - Current implementation status: complete; the previously dormant screens are now surfaced from the shell and settings navigation
+    - Severity: medium-high
+    - Priority: P1
+- Files
+    - [Browse/Views/iOS/Browser/MainTabView.swift](Browse/Views/iOS/Browser/MainTabView.swift)
+    - [Browse/Views/macOS/Browser/MainWindowView.swift](Browse/Views/macOS/Browser/MainWindowView.swift)
+    - [Browse/Views/iOS/Settings/SettingsViewIOS.swift](Browse/Views/iOS/Settings/SettingsViewIOS.swift)
+    - [Browse/Views/macOS/Settings/SettingsViewMacOS.swift](Browse/Views/macOS/Settings/SettingsViewMacOS.swift)
+    - [Browse/Views/Shared/Workspaces/WorkspaceListView.swift](Browse/Views/Shared/Workspaces/WorkspaceListView.swift)
+    - [Browse/Views/iOS/Sessions/SessionsViewIOS.swift](Browse/Views/iOS/Sessions/SessionsViewIOS.swift)
+    - [Browse/Views/iOS/Extensions/ExtensionManagerIOS.swift](Browse/Views/iOS/Extensions/ExtensionManagerIOS.swift)
+    - [Browse/Views/iOS/CustomSites/CustomSiteEditorIOS.swift](Browse/Views/iOS/CustomSites/CustomSiteEditorIOS.swift)
+    - [Browse/Views/iOS/Search/SearchViewIOS.swift](Browse/Views/iOS/Search/SearchViewIOS.swift)
+    - [Browse/Views/iOS/Themes/ThemesViewIOS.swift](Browse/Views/iOS/Themes/ThemesViewIOS.swift)
+    - Missing Work
+    - None remaining from this audit pass.
+- Dependency Analysis
+    - Dependent files: shell views, route destinations, view models, managers.
+    - Impacted features: discoverability, settings workflow, library workflow, admin surfaces.
+    - Required implementation order: add the routes, then verify the targets exist and load the correct managers.
+    - Architectural constraints: avoid dead-end views that cannot be reached from standard app flow.
+- Completion Criteria
+    - Every screen referenced by the app has at least one normal navigation path.
+    - No feature screen exists only as an unreferenced type.
+
+### 6) Project File Contains Malformed References
+- Identification
+    - Feature name: Xcode project integrity
+    - Subsystem: Build configuration / source registration
+    - Current implementation status: complete; the malformed PBX entry was repaired and the new Reading List file is registered
+    - Severity: high
+    - Priority: P0
+- Files
+    - [Browse.xcodeproj/project.pbxproj](Browse.xcodeproj/project.pbxproj)
+    - [Browse/Info.plist](Browse/Info.plist)
+    - [Browse/App/BrowseApp.swift](Browse/App/BrowseApp.swift)
+    - Missing Work
+    - None remaining from this audit pass.
+- Dependency Analysis
+    - Dependent files: every source file in the target.
+    - Impacted features: build success, source registration, target membership.
+    - Required implementation order: repair the project file before any relocation or renaming validation.
+    - Architectural constraints: no stale file paths may remain in the project.
+- Completion Criteria
+    - The project file parses cleanly.
+    - Every source reference resolves to an existing file.
+    - No duplicated source entries remain.
+
+### 7) Startup, Custom Sites, Diagnostics, and Theme Models Still Contain Incomplete Logic
+- Identification
+    - Feature name: core subsystem completion
+    - Subsystem: Browser / CustomSites / Diagnostics / Themes
+    - Current implementation status: partial; several files still contain placeholder behavior or unused models
+    - Severity: medium
+    - Priority: P1
+- Files
+    - [Browse/Browser/StartupManager.swift](Browse/Browser/StartupManager.swift)
+    - [Browse/CustomSites/CustomSiteViewModel.swift](Browse/CustomSites/CustomSiteViewModel.swift)
+    - [Browse/Views/iOS/Diagnostics/DiagnosticsViewIOS.swift](Browse/Views/iOS/Diagnostics/DiagnosticsViewIOS.swift)
+    - [Browse/Themes/Theme.swift](Browse/Themes/Theme.swift)
+    - [Browse/Themes/ThemeViewModel.swift](Browse/Themes/ThemeViewModel.swift)
+    - [Browse/Themes/ThemeManager.swift](Browse/Themes/ThemeManager.swift)
+- Missing Work
+    - Replace placeholder comments with concrete implementation or remove the dead path.
+    - Decide whether `Theme.swift` is still a live model or an obsolete compatibility artifact.
+    - Make startup recommendations and custom-site synchronization fully production-grade.
+- Dependency Analysis
+    - Dependent files: browser shell, settings routes, custom-sites editor, theme views, diagnostics view.
+    - Impacted features: startup pages, custom-site CSS/JS sync, diagnostics visibility, theme persistence.
+    - Required implementation order: remove placeholders, then verify those screens are wired into navigation and persistence.
+    - Architectural constraints: preserve the manager/view-model split already established in the repository.
+- Completion Criteria
+    - No placeholder comments remain in these paths.
+    - The theme and custom-site layers have a clearly defined live code path.
+    - Diagnostics displays real data or a documented empty state.
+
+### 8) Session and Workspace Screens Need Reachability and Workflow Completion
+- Identification
+    - Feature name: sessions and workspaces
+    - Subsystem: Sessions / Workspaces
+    - Current implementation status: partial; managers and view models exist, but workflows are not fully surfaced
+    - Severity: medium
+    - Priority: P1
+- Files
+    - [Browse/Sessions/SessionSnapshotManager.swift](Browse/Sessions/SessionSnapshotManager.swift)
+    - [Browse/Sessions/SessionViewModel.swift](Browse/Sessions/SessionViewModel.swift)
+    - [Browse/Sessions/SessionSnapshot.swift](Browse/Sessions/SessionSnapshot.swift)
+    - [Browse/Workspaces/WorkspaceManager.swift](Browse/Workspaces/WorkspaceManager.swift)
+    - [Browse/Workspaces/WorkspaceViewModel.swift](Browse/Workspaces/WorkspaceViewModel.swift)
+    - [Browse/Workspaces/Workspace.swift](Browse/Workspaces/Workspace.swift)
+    - [Browse/Views/Shared/Workspaces/WorkspaceListView.swift](Browse/Views/Shared/Workspaces/WorkspaceListView.swift)
+    - [Browse/Views/iOS/Sessions/SessionsViewIOS.swift](Browse/Views/iOS/Sessions/SessionsViewIOS.swift)
+    - [Browse/Views/macOS/Sessions/SessionsViewMacOS.swift](Browse/Views/macOS/Sessions/SessionsViewMacOS.swift)
+- Missing Work
+    - Add create/restore workflows for session snapshots.
+    - Make workspace selection persist and surface it from a reachable route.
+    - Ensure the views consume the managers they advertise rather than acting as static lists.
+- Dependency Analysis
+    - Dependent files: browser shell, settings, persistence, tab state, profile state.
+    - Impacted features: session recovery, workspace switching, profile-scoped state.
+    - Required implementation order: connect the routes first, then complete snapshot/restore and workspace activation logic.
+    - Architectural constraints: session and workspace state must remain profile-aware.
+- Completion Criteria
+    - Users can reach sessions and workspaces from normal navigation.
+    - Snapshot creation and restoration are exposed in the UI.
+    - Workspace selection changes app state instead of only updating a list row.
+
+### 9) Search, Privacy, Security, Profiles, and Theme Settings Need Menu Coverage Review
+- Identification
+    - Feature name: settings coverage
+    - Subsystem: Settings / supporting tools
+    - Current implementation status: complete; the reviewed settings surfaces are now reachable from shell navigation
+    - Severity: medium
+    - Priority: P2
+- Files
+    - [Browse/Views/iOS/Settings/SettingsViewIOS.swift](Browse/Views/iOS/Settings/SettingsViewIOS.swift)
+    - [Browse/Views/macOS/Settings/SettingsViewMacOS.swift](Browse/Views/macOS/Settings/SettingsViewMacOS.swift)
+    - [Browse/Views/iOS/Search/SearchViewIOS.swift](Browse/Views/iOS/Search/SearchViewIOS.swift)
+    - [Browse/Views/macOS/Search/SearchViewMacOS.swift](Browse/Views/macOS/Search/SearchViewMacOS.swift)
+    - [Browse/Views/iOS/Privacy/PrivacyViewIOS.swift](Browse/Views/iOS/Privacy/PrivacyViewIOS.swift)
+    - [Browse/Views/macOS/Privacy/PrivacyViewMacOS.swift](Browse/Views/macOS/Privacy/PrivacyViewMacOS.swift)
+    - [Browse/Views/iOS/Security/SecurityViewIOS.swift](Browse/Views/iOS/Security/SecurityViewIOS.swift)
+    - [Browse/Views/macOS/Security/SecurityViewMacOS.swift](Browse/Views/macOS/Security/SecurityViewMacOS.swift)
+    - [Browse/Views/iOS/Profiles/ProfilesViewIOS.swift](Browse/Views/iOS/Profiles/ProfilesViewIOS.swift)
+    - [Browse/Views/macOS/Profiles/ProfilesViewMacOS.swift](Browse/Views/macOS/Profiles/ProfilesViewMacOS.swift)
+    - Missing Work
+    - None remaining from this audit pass.
+- Dependency Analysis
+    - Dependent files: `BrowseApp`, shell views, search manager, profile state, security/privacy managers.
+    - Impacted features: user settings discoverability, search configuration, privacy/security administration.
+    - Required implementation order: verify the routes, then verify each destination receives the correct dependencies.
+    - Architectural constraints: settings must not instantiate disconnected copies of stateful services.
+- Completion Criteria
+    - Settings entry points surface all intended tool screens.
+    - Each tool screen receives the correct live dependencies.
+    - Changes in search preferences alter the actual search URL generation path.
+
+### Relocation / Rename Log
+- No file relocations or renames have been executed yet in this pass.
+- If a file is moved or renamed, record the original path, new path, reason, affected subsystem, dependent files, project registration status, and completion status here before proceeding.
+
+### Completed In This Pass
+- [x] Restored the Reading List route and added the shared Reading List screen.
+- [x] Normalized the platform-specific view type names to match their filenames.
+- [x] Rewired the AI panel to use `AIService` instead of the raw client.
+- [x] Fixed `TabViewModel` to depend on an injected tab manager instead of a private isolated instance.
+- [x] Repaired malformed project registration and added `ReadingListView.swift` to the Xcode target.
+
+### Implementation Order
+1. Repair the project file and platform type identity mismatches.
+2. Restore the broken Reading List route.
+3. Rewire AI panel requests through `AIService`.
+4. Fix shared state ownership for tab/session/workspace surfaces.
+5. Surface dormant screens through normal shell navigation.
+6. Remove placeholder logic and stale dead-code paths.
+7. Re-run the repository-wide validation audit and update this checklist with the verified result.
+
 ## Views Reorg & Subsystem Completion (AED-BROWSE-VIEWS-002)
 
 ### Project Restructure

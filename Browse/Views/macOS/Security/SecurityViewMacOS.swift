@@ -1,7 +1,7 @@
 import SwiftUI
 import WebKit
 
-struct SecurityView: View {
+struct SecurityViewMacOS: View {
     @State var viewModel = SecurityViewModel()
     var webView: WKWebView?
 

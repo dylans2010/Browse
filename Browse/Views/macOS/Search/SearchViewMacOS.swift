@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SearchView: View {
+struct SearchViewMacOS: View {
     @Bindable var manager = SearchProviderManager.shared
 
     var body: some View {

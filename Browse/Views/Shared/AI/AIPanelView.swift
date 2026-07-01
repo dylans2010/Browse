@@ -101,7 +101,7 @@ struct AIPanelView: View {
 
         Task {
             do {
-                let stream = aiService.client.stream(model: modelManager.selectedModel, messages: conversationManager.messages)
+                let stream = aiService.stream(messages: conversationManager.messages, model: modelManager.selectedModel)
                 for try await chunk in stream {
                     streamingManager.append(chunk)
                 }

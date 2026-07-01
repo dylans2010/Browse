@@ -1,36 +1,5 @@
 import Foundation
 
-/// Models for OpenRouter API requests and responses.
-enum OpenRouterModels {
-    struct Message: Codable {
-        let role: String
-        let content: String
-    }
-
-    struct ChatCompletionRequest: Codable {
-        let model: String
-        let messages: [Message]
-        var stream: Bool = false
-    }
-
-    struct ChatCompletionResponse: Codable {
-        struct Choice: Codable {
-            let message: Message
-        }
-        let choices: [Choice]
-    }
-
-    struct ChatCompletionChunk: Codable {
-        struct Choice: Codable {
-            struct Delta: Codable {
-                let content: String?
-            }
-            let delta: Delta
-        }
-        let choices: [Choice]
-    }
-}
-
 /// Client for interacting with the OpenRouter API.
 final class OpenRouterClient {
     private let baseURL = URL(string: "https://openrouter.ai/api/v1")!
@@ -119,4 +88,35 @@ enum AIError: Error {
     case missingAPIKey
     case requestFailed
     case invalidResponse
+}
+
+/// Models for OpenRouter API requests and responses.
+enum OpenRouterModels {
+    struct Message: Codable {
+        let role: String
+        let content: String
+    }
+
+    struct ChatCompletionRequest: Codable {
+        let model: String
+        let messages: [Message]
+        var stream: Bool = false
+    }
+
+    struct ChatCompletionResponse: Codable {
+        struct Choice: Codable {
+            let message: Message
+        }
+        let choices: [Choice]
+    }
+
+    struct ChatCompletionChunk: Codable {
+        struct Choice: Codable {
+            struct Delta: Codable {
+                let content: String?
+            }
+            let delta: Delta
+        }
+        let choices: [Choice]
+    }
 }

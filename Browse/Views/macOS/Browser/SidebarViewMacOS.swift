@@ -1,7 +1,7 @@
 import SwiftUI
 import SwiftData
 
-struct SidebarView: View {
+struct SidebarViewMacOS: View {
     @Bindable var tabManager: TabManager
     @Query var profiles: [Profile]
     @State private var selectedProfileId: UUID?
@@ -46,6 +46,9 @@ struct SidebarView: View {
                 }
                 NavigationLink(destination: DownloadManagerView()) {
                     Label("Downloads", systemImage: "arrow.down.circle")
+                }
+                NavigationLink(destination: ReadingListView()) {
+                    Label("Reading List", systemImage: "book")
                 }
             }
         }

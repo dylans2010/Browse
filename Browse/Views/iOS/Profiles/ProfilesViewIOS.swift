@@ -1,7 +1,7 @@
 import SwiftUI
 import SwiftData
 
-struct ProfilesView: View {
+struct ProfilesViewIOS: View {
     @Query var profiles: [Profile]
     @Environment(\.modelContext) private var modelContext
 

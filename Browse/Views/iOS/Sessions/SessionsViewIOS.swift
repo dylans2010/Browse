@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SessionsView: View {
+struct SessionsViewIOS: View {
     @State var viewModel: SessionViewModel
     var profileId: UUID
 

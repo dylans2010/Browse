@@ -20,4 +20,16 @@ final class ReadingListManager {
         try? context.save()
         fetchItems()
     }
+
+    func updateItem(_ item: ReadingListItem, isRead: Bool) {
+        item.isRead = isRead
+        try? context.save()
+        fetchItems()
+    }
+
+    func deleteItem(_ item: ReadingListItem) {
+        context.delete(item)
+        try? context.save()
+        fetchItems()
+    }
 }

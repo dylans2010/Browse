@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ThemesView: View {
+struct ThemesViewIOS: View {
     @State var viewModel = ThemeViewModel()
     var profileId: UUID?
 

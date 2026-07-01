@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct CustomSiteEditorView: View {
+struct CustomSiteEditorIOS: View {
     @State var viewModel: CustomSiteViewModel
 
     var body: some View {

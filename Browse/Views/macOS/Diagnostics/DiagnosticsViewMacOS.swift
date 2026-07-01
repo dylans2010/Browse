@@ -1,7 +1,7 @@
 import SwiftUI
 import WebKit
 
-struct DiagnosticsView: View {
+struct DiagnosticsViewMacOS: View {
     @State var viewModel: DiagnosticsViewModel
     let webView: WKWebView?
 

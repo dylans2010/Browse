@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct AddressBarView: View {
+struct AddressBarViewIOS: View {
     @Binding var text: String
     var isLoading: Bool
     var progress: Double

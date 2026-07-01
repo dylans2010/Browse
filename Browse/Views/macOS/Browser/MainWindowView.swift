@@ -14,7 +14,7 @@ struct MainWindowView: View {
 
     var body: some View {
         NavigationSplitView {
-            SidebarView(tabManager: tabManager)
+            SidebarViewMacOS(tabManager: tabManager)
         } detail: {
             HStack(spacing: 0) {
                 VStack(spacing: 0) {
@@ -29,7 +29,7 @@ struct MainWindowView: View {
                         }
                         .disabled(!(tabManager.activeTab?.webPage.canGoForward ?? false))
 
-                        AddressBarView(
+                        AddressBarViewMacOS(
                             text: $urlText,
                             isLoading: tabManager.activeTab?.webPage.isLoading ?? false,
                             progress: tabManager.activeTab?.webPage.estimatedProgress ?? 0,
@@ -45,7 +45,7 @@ struct MainWindowView: View {
                         }
 
                         NavigationLink {
-                            SettingsView(aiSettings: AISettings(), activeWebView: tabManager.activeTab?.webPage.webView, profileId: tabManager.activeTab?.item.profileId)
+                            SettingsViewMacOS(aiSettings: AISettings(), activeWebView: tabManager.activeTab?.webPage.webView, profileId: tabManager.activeTab?.item.profileId)
                         } label: {
                             Image(systemName: "gear")
                         }
@@ -53,7 +53,7 @@ struct MainWindowView: View {
                     .padding()
 
                     if let activeTab = tabManager.activeTab {
-                        WebView(webView: activeTab.webPage.webView)
+                        WebViewMacOS(webView: activeTab.webPage.webView)
                             .onAppear {
                                 activeTab.webPage.onURLChange = { url, title in
                                     tabManager.recordVisit(url: url, title: title, profileId: activeTab.item.profileId)

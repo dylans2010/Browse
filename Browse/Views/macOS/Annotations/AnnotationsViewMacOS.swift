@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct AnnotationsView: View {
+struct AnnotationsViewMacOS: View {
     @State var viewModel: NoteViewModel
     @State private var newNoteContent: String = ""
     var currentHost: String

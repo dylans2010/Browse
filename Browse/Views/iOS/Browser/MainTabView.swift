@@ -11,7 +11,7 @@ struct MainTabView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            AddressBarView(
+            AddressBarViewIOS(
                 text: $urlText,
                 isLoading: tabManager.activeTab?.webPage.isLoading ?? false,
                 progress: tabManager.activeTab?.webPage.estimatedProgress ?? 0,
@@ -25,7 +25,7 @@ struct MainTabView: View {
             .background(.ultraThinMaterial)
 
             if let activeTab = tabManager.activeTab {
-                WebView(webView: activeTab.webPage.webView)
+                WebViewIOS(webView: activeTab.webPage.webView)
                     .onAppear {
                         activeTab.webPage.onURLChange = { url, title in
                             urlText = url.absoluteString
@@ -104,6 +104,11 @@ struct MainTabView: View {
                             tabManager.createTab(url: URL(string: "https://www.google.com"), profileId: profileId)
                             isShowingMenu = false
                         }
+                        Button("Save to Reading List") {
+                            saveCurrentPageToReadingList()
+                            isShowingMenu = false
+                        }
+                        .disabled(tabManager.activeTab?.webPage.url == nil)
                         NavigationLink("Bookmarks", destination: BookmarkManagerView())
                         NavigationLink("History", destination: HistoryManagerView())
                         NavigationLink("Downloads", destination: DownloadManagerView())
@@ -111,7 +116,7 @@ struct MainTabView: View {
                     }
                     Section {
                         NavigationLink("Settings") {
-                            SettingsView(aiSettings: AISettings(), activeWebView: tabManager.activeTab?.webPage.webView, profileId: tabManager.activeTab?.item.profileId)
+                            SettingsViewIOS(aiSettings: AISettings(), activeWebView: tabManager.activeTab?.webPage.webView, profileId: tabManager.activeTab?.item.profileId)
                         }
                     }
                 }
@@ -148,5 +153,11 @@ struct MainTabView: View {
             rootVC.present(activityVC, animated: true)
         }
         #endif
+    }
+
+    private func saveCurrentPageToReadingList() {
+        guard let url = tabManager.activeTab?.webPage.url else { return }
+        let title = tabManager.activeTab?.webPage.title.isEmpty == false ? (tabManager.activeTab?.webPage.title ?? url.absoluteString) : url.absoluteString
+        ReadingListManager.shared.addItem(url: url, title: title)
     }
 }

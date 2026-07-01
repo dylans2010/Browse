@@ -34,7 +34,7 @@ struct BrowseApp: App {
 
         #if os(macOS)
         Settings {
-            SettingsView(aiSettings: aiSettings)
+            SettingsViewMacOS(aiSettings: aiSettings)
                 .modelContainer(persistence.container)
         }
         #endif

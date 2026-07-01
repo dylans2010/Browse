@@ -48,17 +48,25 @@ final class AIService {
     /// Streaming completion method.
     func stream(prompt: String, context: String? = nil, model: String? = nil) -> AsyncThrowingStream<String, Error> {
         let selectedModel = model ?? modelManager.selectedModel
+        var messages = contextManager.getMessages()
+        if let context = context {
+            messages.append(OpenRouterModels.Message(role: "system", content: context))
+        }
+        messages.append(OpenRouterModels.Message(role: "user", content: prompt))
 
+        return stream(messages: messages, model: selectedModel, userPrompt: prompt)
+    }
+
+    func stream(messages: [OpenRouterModels.Message], model: String? = nil) -> AsyncThrowingStream<String, Error> {
+        let selectedModel = model ?? modelManager.selectedModel
+        return stream(messages: messages, model: selectedModel)
+    }
+
+    private func stream(messages: [OpenRouterModels.Message], model: String, userPrompt: String? = nil) -> AsyncThrowingStream<String, Error> {
         return AsyncThrowingStream { continuation in
             Task {
                 do {
                     try await rateLimiter.waitForAvailability()
-
-                    var messages = contextManager.getMessages()
-                    if let context = context {
-                        messages.append(OpenRouterModels.Message(role: "system", content: context))
-                    }
-                    messages.append(OpenRouterModels.Message(role: "user", content: prompt))
 
                     let stream = client.stream(model: selectedModel, messages: messages)
                     var fullResponse = ""
@@ -68,7 +76,9 @@ final class AIService {
                         continuation.yield(chunk)
                     }
 
-                    contextManager.addMessage(OpenRouterModels.Message(role: "user", content: prompt))
+                    if let userPrompt = userPrompt {
+                        contextManager.addMessage(OpenRouterModels.Message(role: "user", content: userPrompt))
+                    }
                     contextManager.addMessage(OpenRouterModels.Message(role: "assistant", content: fullResponse))
                     continuation.finish()
                 } catch {

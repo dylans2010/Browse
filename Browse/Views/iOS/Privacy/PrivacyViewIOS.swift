@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct PrivacyView: View {
+struct PrivacyViewIOS: View {
     @State var viewModel = PermissionViewModel()
     var currentHost: String?
 

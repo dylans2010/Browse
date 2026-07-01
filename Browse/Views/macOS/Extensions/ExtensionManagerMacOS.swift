@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ExtensionManagerView: View {
+struct ExtensionManagerMacOS: View {
     @State var viewModel: ExtensionViewModel
     @State private var description: String = ""
 

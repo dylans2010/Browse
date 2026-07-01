@@ -1,7 +1,7 @@
 import SwiftUI
 import WebKit
 
-struct SettingsView: View {
+struct SettingsViewMacOS: View {
     @Bindable var aiSettings: AISettings
     @State private var apiKey: String = ""
     @Environment(\.modelContext) private var modelContext
@@ -51,26 +51,52 @@ struct SettingsView: View {
             }
 
             Section("Tools") {
+                NavigationLink("Search") {
+                    SearchViewMacOS()
+                }
                 NavigationLink("Diagnostics") {
-                    DiagnosticsView(viewModel: DiagnosticsViewModel(), webView: activeWebView)
+                    DiagnosticsViewMacOS(viewModel: DiagnosticsViewModel(), webView: activeWebView)
                 }
                 NavigationLink("Profiles") {
-                    ProfilesView()
+                    ProfilesViewMacOS()
                 }
                 NavigationLink("Privacy") {
-                    PrivacyView()
+                    PrivacyViewMacOS()
                 }
                 NavigationLink("Security") {
-                    SecurityView(webView: activeWebView)
+                    SecurityViewMacOS(webView: activeWebView)
                 }
                 NavigationLink("Themes") {
-                    ThemesView(profileId: profileId)
+                    ThemesViewMacOS(profileId: profileId)
+                }
+                NavigationLink("Sessions") {
+                    SessionsViewMacOS(viewModel: SessionViewModel(), profileId: profileId ?? UUID())
+                }
+                NavigationLink("Workspaces") {
+                    WorkspaceListView(viewModel: WorkspaceViewModel(), profileId: profileId ?? UUID())
+                }
+                NavigationLink("Extensions") {
+                    ExtensionManagerMacOS(viewModel: ExtensionViewModel())
+                }
+                NavigationLink("Custom Sites") {
+                    customSiteDestination
                 }
             }
         }
         .padding()
         .onAppear {
             apiKey = (try? KeychainManager.shared.retrieve(for: "OpenRouterAPIKey")) ?? ""
+        }
+    }
+
+    @ViewBuilder
+    private var customSiteDestination: some View {
+        if let host = activeWebView?.url?.host {
+            let viewModel = CustomSiteViewModel()
+            viewModel.loadConfig(for: host)
+            CustomSiteEditorMacOS(viewModel: viewModel)
+        } else {
+            ContentUnavailableView("No Active Site", systemImage: "doc.text.magnifyingglass", description: Text("Open a page to edit custom site settings."))
         }
     }
 }

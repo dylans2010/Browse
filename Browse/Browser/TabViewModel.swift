@@ -4,7 +4,11 @@ import Observation
 @Observable
 final class TabViewModel {
     private let logicManager = TabLogicManager.shared
-    private let tabManager = TabManager() // This would normally be injected or shared
+    private let tabManager: TabManager
+
+    init(tabManager: TabManager = TabManager()) {
+        self.tabManager = tabManager
+    }
 
     var tabs: [TabManager.Tab] { tabManager.tabs }
 
