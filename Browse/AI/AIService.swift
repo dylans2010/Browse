@@ -68,7 +68,7 @@ final class AIService {
                 do {
                     try await rateLimiter.waitForAvailability()
 
-                    let stream = client.stream(model: selectedModel, messages: messages)
+                    let stream = client.stream(model: model, messages: messages)
                     var fullResponse = ""
 
                     for try await chunk in stream {
