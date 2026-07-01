@@ -93,11 +93,15 @@ struct SettingsViewIOS: View {
     @ViewBuilder
     private var customSiteDestination: some View {
         if let host = activeWebView?.url?.host {
-            let viewModel = CustomSiteViewModel()
-            viewModel.loadConfig(for: host)
-            CustomSiteEditorIOS(viewModel: viewModel)
+            CustomSiteEditorIOS(viewModel: customSiteViewModel(for: host))
         } else {
             ContentUnavailableView("No Active Site", systemImage: "doc.text.magnifyingglass", description: Text("Open a page to edit custom site settings."))
         }
+    }
+
+    private func customSiteViewModel(for host: String) -> CustomSiteViewModel {
+        let viewModel = CustomSiteViewModel()
+        viewModel.loadConfig(for: host)
+        return viewModel
     }
 }
