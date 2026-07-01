@@ -491,3 +491,38 @@ Audit status: the legacy checked boxes above are retained as historical claims, 
     - [x] GAP: CustomSiteEditor functional sync (Phase 5)
     - [x] GAP: ExtensionManager functional runtime (Phase 6)
     - [x] GAP: iOS MainTabView menu navigation links for Library features
+
+
+## XCODEPROJ-CLEANUP-001 Project Navigator Rebuild
+
+### Pre-change Audit Findings
+- [x] Audit physical repository structure before modifying project files.
+- [x] Audit `Browse.xcodeproj/project.pbxproj` registrations, targets, build phases, and navigator groups.
+- [x] Compare filesystem and project references for mismatches, duplicate/stale entries, broken references, flattened groups, and test artifacts.
+- [x] Identified testing artifacts scheduled for deletion: `Browse/Tests/AIServiceTests.swift`, `Browse/Tests/NetworkingTests.swift`, and `Browse/UITests/BrowseUITests.swift`.
+- [x] Identified stale project test registrations scheduled for removal from PBXBuildFile, PBXFileReference, PBXSourcesBuildPhase, and navigator hierarchy.
+- [x] Identified flattened navigator file references such as `Browse/AI/AIService.swift` that must be replaced with hierarchical groups mirroring filesystem folders.
+- [x] Identified required project paths to rebuild under hierarchical groups: `Browse/`, all production subfolders, `Assets.xcassets`, and `Info.plist`.
+
+### Planned Cleanup Tasks
+- [x] Delete `Browse/Tests/` and `Browse/UITests/` from the repository.
+- [x] Remove all project references to test files, XCTest sources, test bundles, schemes, plans, and test-only build entries.
+- [x] Rebuild PBXFileReference entries so each production file exists exactly once and resolves to a valid repository path.
+- [x] Rebuild PBXGroup hierarchy so the Xcode File Navigator mirrors the physical folder tree instead of flattened long paths.
+- [x] Rebuild source and resource build phases with production files only.
+- [x] Remove orphaned file references, duplicate build entries, stale test objects, empty groups, and invalid registrations.
+- [x] Validate no `Tests`, `UITests`, or `XCTest` references remain in `Browse.xcodeproj` and production source paths.
+- [x] Validate every project file reference resolves on disk and every production Swift/resource file is registered.
+- [ ] Build the `Browse` scheme successfully after cleanup (blocked in this container because `xcodebuild` is unavailable).
+
+### Files and Groups To Modify
+- [x] `Checklist.md` — track this audit and cleanup lifecycle.
+- [x] `Browse.xcodeproj/project.pbxproj` — rebuild navigator hierarchy, file references, and build phase memberships.
+- [x] `Browse/Tests/` — delete test-only source directory.
+- [x] `Browse/UITests/` — delete UI test source directory.
+
+### Completion Log
+- [x] Repository testing artifacts deleted.
+- [x] Project hierarchy rebuilt.
+- [x] Project validation completed.
+- [ ] Build completed (blocked in this container because `xcodebuild` is unavailable).
