@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 @main
 struct BrowseApp: App {
@@ -34,7 +35,7 @@ struct BrowseApp: App {
 
         #if os(macOS)
         Settings {
-            SettingsViewMacOS(aiSettings: aiSettings)
+            SettingsViewMacOS(aiSettings: aiSettings, activeWebView: nil, profileId: nil)
                 .modelContainer(persistence.container)
         }
         #endif
