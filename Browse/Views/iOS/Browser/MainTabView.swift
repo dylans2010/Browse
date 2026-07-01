@@ -11,7 +11,6 @@ struct MainTabView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            // Address bar — previously missing entirely on iOS.
             AddressBarView(
                 text: $urlText,
                 isLoading: tabManager.activeTab?.webPage.isLoading ?? false,
@@ -44,7 +43,6 @@ struct MainTabView: View {
                 ContentUnavailableView("No Open Tabs", systemImage: "plus.circle")
             }
 
-            // Bottom navigation bar
             HStack {
                 Button(action: { tabManager.activeTab?.webPage.goBack() }) {
                     Image(systemName: "chevron.left")
@@ -85,7 +83,6 @@ struct MainTabView: View {
         }
         .onAppear {
             if tabManager.tabs.isEmpty {
-                // Fixed: use the stored default profile instead of a random UUID.
                 let profileId = profiles.first?.id ?? UUID()
                 tabManager.createTab(url: URL(string: "https://www.apple.com"), profileId: profileId)
             }
@@ -103,18 +100,18 @@ struct MainTabView: View {
                 List {
                     Section {
                         Button("New Tab") {
-                            // Fixed: use the stored default profile instead of a random UUID.
                             let profileId = profiles.first?.id ?? UUID()
                             tabManager.createTab(url: URL(string: "https://www.google.com"), profileId: profileId)
                             isShowingMenu = false
                         }
-                        Button("Bookmarks") { /* Navigate */ }
-                        Button("History") { /* Navigate */ }
-                        Button("Downloads") { /* Navigate */ }
+                        NavigationLink("Bookmarks", destination: BookmarkManagerView())
+                        NavigationLink("History", destination: HistoryManagerView())
+                        NavigationLink("Downloads", destination: DownloadManagerView())
+                        NavigationLink("Reading List", destination: ReadingListView())
                     }
                     Section {
                         NavigationLink("Settings") {
-                            SettingsView(aiSettings: AISettings())
+                            SettingsView(aiSettings: AISettings(), activeWebView: tabManager.activeTab?.webPage.webView, profileId: tabManager.activeTab?.item.profileId)
                         }
                     }
                 }

@@ -16,65 +16,72 @@ struct MainWindowView: View {
         NavigationSplitView {
             SidebarView(tabManager: tabManager)
         } detail: {
-            HStack(spacing: 0) {
-                VStack(spacing: 0) {
-                    HStack {
-                        Button(action: { tabManager.activeTab?.webPage.goBack() }) {
-                            Image(systemName: "chevron.left")
-                        }
-                        .disabled(!(tabManager.activeTab?.webPage.canGoBack ?? false))
-
-                        Button(action: { tabManager.activeTab?.webPage.goForward() }) {
-                            Image(systemName: "chevron.right")
-                        }
-                        .disabled(!(tabManager.activeTab?.webPage.canGoForward ?? false))
-
-                        AddressBarView(
-                            text: $urlText,
-                            isLoading: tabManager.activeTab?.webPage.isLoading ?? false,
-                            progress: tabManager.activeTab?.webPage.estimatedProgress ?? 0,
-                            isReaderAvailable: tabManager.activeTab?.webPage.isReaderAvailable ?? false,
-                            isReaderModeActive: $isReaderModeActive,
-                            onCommit: { loadURL() },
-                            onReload: { tabManager.activeTab?.webPage.reload() }
-                        )
-
-                        Button(action: { isShowingAISidebar.toggle() }) {
-                            Image(systemName: "sparkles")
-                                .foregroundColor(isShowingAISidebar ? .blue : .primary)
-                        }
-                    }
-                    .padding()
-
-                    if let activeTab = tabManager.activeTab {
-                        WebView(webView: activeTab.webPage.webView)
-                            .onAppear {
-                                activeTab.webPage.onURLChange = { url, title in
-                                    tabManager.recordVisit(url: url, title: title, profileId: activeTab.item.profileId)
-                                }
+            NavigationStack {
+                HStack(spacing: 0) {
+                    VStack(spacing: 0) {
+                        HStack {
+                            Button(action: { tabManager.activeTab?.webPage.goBack() }) {
+                                Image(systemName: "chevron.left")
                             }
-                    } else {
-                        ContentUnavailableView("No Open Tabs", systemImage: "plus.circle", description: Text("Click + to start browsing"))
-                    }
-                }
+                            .disabled(!(tabManager.activeTab?.webPage.canGoBack ?? false))
 
-                if isShowingAISidebar {
-                    Divider()
-                    AIPanelView(
-                        streamingManager: streamingManager,
-                        conversationManager: conversationManager,
-                        modelManager: modelManager,
-                        aiService: aiService,
-                        activeTab: tabManager.activeTab
-                    )
-                    .frame(width: 300)
-                    .transition(.move(edge: .trailing))
+                            Button(action: { tabManager.activeTab?.webPage.goForward() }) {
+                                Image(systemName: "chevron.right")
+                            }
+                            .disabled(!(tabManager.activeTab?.webPage.canGoForward ?? false))
+
+                            AddressBarView(
+                                text: $urlText,
+                                isLoading: tabManager.activeTab?.webPage.isLoading ?? false,
+                                progress: tabManager.activeTab?.webPage.estimatedProgress ?? 0,
+                                isReaderAvailable: tabManager.activeTab?.webPage.isReaderAvailable ?? false,
+                                isReaderModeActive: $isReaderModeActive,
+                                onCommit: { loadURL() },
+                                onReload: { tabManager.activeTab?.webPage.reload() }
+                            )
+
+                            Button(action: { isShowingAISidebar.toggle() }) {
+                                Image(systemName: "sparkles")
+                                    .foregroundColor(isShowingAISidebar ? .blue : .primary)
+                            }
+
+                            NavigationLink {
+                                SettingsView(aiSettings: AISettings(), activeWebView: tabManager.activeTab?.webPage.webView, profileId: tabManager.activeTab?.item.profileId)
+                            } label: {
+                                Image(systemName: "gear")
+                            }
+                        }
+                        .padding()
+
+                        if let activeTab = tabManager.activeTab {
+                            WebView(webView: activeTab.webPage.webView)
+                                .onAppear {
+                                    activeTab.webPage.onURLChange = { url, title in
+                                        tabManager.recordVisit(url: url, title: title, profileId: activeTab.item.profileId)
+                                    }
+                                }
+                        } else {
+                            ContentUnavailableView("No Open Tabs", systemImage: "plus.circle", description: Text("Click + to start browsing"))
+                        }
+                    }
+
+                    if isShowingAISidebar {
+                        Divider()
+                        AIPanelView(
+                            streamingManager: streamingManager,
+                            conversationManager: conversationManager,
+                            modelManager: modelManager,
+                            aiService: aiService,
+                            activeTab: tabManager.activeTab
+                        )
+                        .frame(width: 300)
+                        .transition(.move(edge: .trailing))
+                    }
                 }
             }
         }
         .onAppear {
             if tabManager.tabs.isEmpty {
-                // Fixed: use the stored default profile instead of a random UUID.
                 let profileId = profiles.first?.id ?? UUID()
                 tabManager.createTab(url: URL(string: "https://www.apple.com"), profileId: profileId)
             }

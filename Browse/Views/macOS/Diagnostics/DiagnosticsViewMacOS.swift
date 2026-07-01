@@ -1,7 +1,9 @@
 import SwiftUI
+import WebKit
 
 struct DiagnosticsView: View {
-    @State var viewModel: DiagnosticsViewModel
+    @State private var viewModel = DiagnosticsViewModel()
+    let webView: WKWebView?
 
     var body: some View {
         List {
@@ -16,7 +18,11 @@ struct DiagnosticsView: View {
             }
         }
         .navigationTitle("Diagnostics")
-        .task { /* In a real app we would pass the active webView here */ }
+        .task {
+            if let webView = webView {
+                await viewModel.refreshMetrics(webView: webView)
+            }
+        }
         .frame(minWidth: 300)
     }
 }
