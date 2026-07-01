@@ -1,4 +1,6 @@
+#if os(iOS)
 import SwiftUI
+import UIKit
 
 struct AddressBarViewIOS: View {
     @Binding var text: String
@@ -72,3 +74,4 @@ struct AddressBarViewIOS: View {
         )
     }
 }
+#endif

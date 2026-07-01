@@ -1,5 +1,7 @@
+#if os(iOS)
 import SwiftUI
 import SwiftData
+import UIKit
 
 struct MainTabView: View {
     @State private var tabManager = TabManager()
@@ -161,3 +163,4 @@ struct MainTabView: View {
         ReadingListManager.shared.addItem(url: url, title: title)
     }
 }
+#endif
