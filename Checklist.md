@@ -502,7 +502,7 @@ Audit status: the legacy checked boxes above are retained as historical claims, 
 - [x] Identified testing artifacts scheduled for deletion: `Browse/Tests/AIServiceTests.swift`, `Browse/Tests/NetworkingTests.swift`, and `Browse/UITests/BrowseUITests.swift`.
 - [x] Identified stale project test registrations scheduled for removal from PBXBuildFile, PBXFileReference, PBXSourcesBuildPhase, and navigator hierarchy.
 - [x] Identified flattened navigator file references such as `Browse/AI/AIService.swift` that must be replaced with hierarchical groups mirroring filesystem folders.
-- [x] Identified required project paths to rebuild under hierarchical groups: `Browse/`, all production subfolders, `Assets.xcassets`, and `Info.plist`.
+- [x] Identified required project paths to rebuild under hierarchical groups: `Browse/`, all production subfolders, and `Info.plist`.
 
 ### Planned Cleanup Tasks
 - [x] Delete `Browse/Tests/` and `Browse/UITests/` from the repository.
