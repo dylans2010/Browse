@@ -165,3 +165,43 @@
 - [x] Performance optimization (Retain cycles, memory leaks)
 - [x] Xcode Project registration check (No orphan files)
 - [x] Final Audit
+
+## Views Reorg & Subsystem Completion (AED-BROWSE-VIEWS-002)
+
+### Project Restructure
+- [x] Relocate Browse.xcodeproj to repository root
+- [x] Prepend 'Browse/' to all PBXFileReference paths
+- [x] Update build settings and CI workflows
+- [x] Verify build on both platforms (manual verification of paths)
+
+### View Consolidation
+- [x] Move SettingsView.swift to Browse/Views/ (Split into iOS/macOS)
+- [x] Move WebView.swift to Browse/Views/ (Split into iOS/macOS)
+- [x] Move WorkspaceListView.swift to Browse/Views/Shared/
+- [x] Move CustomSiteEditorView.swift to Browse/Views/ (Split into iOS/macOS)
+- [x] Move HistoryManagerView.swift to Browse/Views/Shared/
+- [x] Move AIPanelView.swift to Browse/Views/Shared/
+- [x] Move ExtensionManagerView.swift to Browse/Views/ (Split into iOS/macOS)
+- [x] Move DownloadManagerView.swift to Browse/Views/Shared/
+- [x] Move BookmarkManagerView.swift to Browse/Views/Shared/
+- [x] Declutter non-Views modules
+
+### CustomSites Completion
+- [x] VisualEditState-driven ViewModel
+- [x] CSSGenerator live synchronization (debounced)
+- [x] Functional editor views on iOS and macOS
+- [x] Verify Visual ⇄ CSS sync end-to-end
+
+### Extensions Completion
+- [x] ExtensionPackager preview UI
+- [x] Sandboxed runtime (WKScriptMessageHandler)
+- [x] Generate → Install → Run verified end-to-end
+
+### Final Completeness Audit
+- [x] Systematic audit of all features against Non-Functional File Test
+- [x] Resolve all identified functional gaps
+    - [x] GAP: Missing iOS/macOS Views for Diagnostics, Annotations, Themes, Security, Privacy, Search, Profiles, Sessions
+    - [x] GAP: ReadingListView not integrated into MainTabView/MainWindowView
+    - [x] GAP: CustomSiteEditor functional sync (Phase 5)
+    - [x] GAP: ExtensionManager functional runtime (Phase 6)
+    - [x] GAP: iOS MainTabView menu navigation links for Library features

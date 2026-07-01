@@ -6,7 +6,7 @@ def generate_id():
     return str(uuid.uuid4()).replace('-', '').upper()[:24]
 
 def register_file(file_path):
-    pbx_path = 'Browse/Browse.xcodeproj/project.pbxproj'
+    pbx_path = 'Browse.xcodeproj/project.pbxproj'
     with open(pbx_path, 'r') as f:
         content = f.read()
 
