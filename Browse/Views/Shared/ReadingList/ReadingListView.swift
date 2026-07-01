@@ -27,7 +27,7 @@ struct ReadingListView: View {
         }
         .navigationTitle("Reading List")
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
+            ToolbarItem(placement: .primaryAction) {
                 Button {
                     isShowingAddSheet = true
                 } label: {
