@@ -1,5 +1,7 @@
 import SwiftUI
 import WebKit
+import AppKit
+import UniformTypeIdentifiers
 
 // MARK: – Main Settings View (macOS)
 
