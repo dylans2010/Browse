@@ -1,5 +1,6 @@
 import SwiftUI
 import WebKit
+import UIKit
 
 struct SettingsViewIOS: View {
     @Bindable var aiSettings: AISettings
