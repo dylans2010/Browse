@@ -6,7 +6,7 @@ struct MainWindowView: View {
     @State private var streamingManager = StreamingManager()
     @State private var conversationManager = ConversationManager()
     @State private var modelManager = ModelManager()
-    @State private var aiService = AIService()
+    @State private var aiService = AIService.shared
     @State private var urlText: String = ""
     @State private var isShowingAISidebar: Bool = false
     @State private var isReaderModeActive: Bool = false
