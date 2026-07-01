@@ -7,7 +7,11 @@ final class SecurityManager {
 
     /// Fetches cookies for a given web view.
     func fetchCookies(from webView: WKWebView) async -> [HTTPCookie] {
-        return await webView.configuration.websiteDataStore.httpCookieStore.getAllCookies()
+        await withCheckedContinuation { continuation in
+            webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { cookies in
+                continuation.resume(returning: cookies)
+            }
+        }
     }
 
     /// Fetches website storage data types.

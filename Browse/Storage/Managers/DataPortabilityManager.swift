@@ -43,7 +43,7 @@ final class DataPortabilityManager {
     /// Imports browser data from a JSON file.
     func importData(from url: URL) async throws {
         let data = try Data(contentsOf: url)
-        let export = try JSONDecoder().decode(ExportData.self, data: data)
+        let export = try JSONDecoder().decode(ExportData.self, from: data)
 
         for entry in export.history {
             let item = HistoryItem(url: entry.url, title: entry.title, profileId: UUID())
@@ -51,7 +51,7 @@ final class DataPortabilityManager {
         }
 
         for entry in export.bookmarks {
-            let item = Bookmark(url: entry.url, title: entry.title)
+            let item = Bookmark(url: entry.url, title: entry.title, profileId: UUID())
             context.insert(item)
         }
 

@@ -7,7 +7,11 @@ final class WebArchiveManager {
     /// Saves a web page as a web archive.
     func saveWebArchive(from webView: WKWebView, filename: String) async -> URL? {
         do {
-            let data = try await webView.createWebArchiveData()
+            let data = try await withCheckedThrowingContinuation { continuation in
+                webView.createWebArchiveData { result in
+                    continuation.resume(with: result)
+                }
+            }
             let fileManager = FileManager.default
             let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let archiveURL = documentsURL.appendingPathComponent("\(filename).webarchive")
