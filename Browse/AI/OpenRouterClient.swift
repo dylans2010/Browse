@@ -31,7 +31,7 @@ final class OpenRouterClient {
             throw AIError.requestFailed
         }
 
-        let decoded = try JSONDecoder().decode(OpenRouterModels.ChatCompletionResponse.self, data: data)
+        let decoded = try JSONDecoder().decode(OpenRouterModels.ChatCompletionResponse.self, from: data)
         return decoded.choices.first?.message.content ?? ""
     }
 
@@ -69,7 +69,7 @@ final class OpenRouterClient {
                             }
 
                             if let data = jsonString.data(using: .utf8),
-                               let chunk = try? JSONDecoder().decode(OpenRouterModels.ChatCompletionChunk.self, data: data),
+                               let chunk = try? JSONDecoder().decode(OpenRouterModels.ChatCompletionChunk.self, from: data),
                                let content = chunk.choices.first?.delta.content {
                                 continuation.yield(content)
                             }
