@@ -1,6 +1,8 @@
 import SwiftUI
 import WebKit
+#if canImport(UIKit)
 import UIKit
+#endif
 
 struct SettingsViewIOS: View {
     @Bindable var aiSettings: AISettings
@@ -32,13 +34,7 @@ struct SettingsViewIOS: View {
             Section("Data Portability") {
                 Button("Export Browser Data") {
                     Task {
-                        if let url = try? await DataPortabilityManager.shared.exportData() {
-                            let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-                            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                               let rootVC = scene.windows.first?.rootViewController {
-                                rootVC.present(activityVC, animated: true)
-                            }
-                        }
+                        await exportBrowserData()
                     }
                 }
             }
@@ -80,6 +76,18 @@ struct SettingsViewIOS: View {
         .onAppear {
             apiKey = (try? KeychainManager.shared.retrieve(for: "OpenRouterAPIKey")) ?? ""
         }
+    }
+
+    @MainActor
+    private func exportBrowserData() async {
+        #if canImport(UIKit)
+        guard let url = try? await DataPortabilityManager.shared.exportData() else { return }
+        let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let rootVC = scene.windows.first?.rootViewController {
+            rootVC.present(activityVC, animated: true)
+        }
+        #endif
     }
 
     @ViewBuilder
