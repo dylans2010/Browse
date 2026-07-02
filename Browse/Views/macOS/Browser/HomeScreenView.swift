@@ -111,7 +111,10 @@ struct HomeScreenView: View {
                 tabManager.createTab(url: url, profileId: profileId)
             }
         case .search(let query):
-            let url = SearchProviderManager.shared.searchURL(for: query)
+            guard let url = SearchProviderManager.shared.searchURL(for: query) else {
+                Logger.browser.warning("Failed to build search URL for query: \(query, privacy: .public)")
+                break
+            }
             if let activeTab = tabManager.activeTab {
                 activeTab.webPage.load(url: url)
             } else {
@@ -183,6 +186,5 @@ struct RecentPagesView: View {
         }
         .frame(maxWidth: 800, alignment: .leading)
     }
-}
 }
 #endif
