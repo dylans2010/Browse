@@ -4,6 +4,9 @@ import SwiftUI
 
 #if os(macOS)
 import AppKit
+#endif
+
+#if os(macOS)
 typealias PlatformImage = NSImage
 #else
 import UIKit

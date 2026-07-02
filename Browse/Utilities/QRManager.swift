@@ -4,7 +4,9 @@ import SwiftUI
 
 #if os(macOS)
 import AppKit
-#else
+#endif
+
+#if !os(macOS)
 import UIKit
 #endif
 

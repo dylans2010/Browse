@@ -28,7 +28,8 @@ final class PersistenceProvider {
             GestureCommand.self,
             Theme.self,
             CustomSiteConfig.self,
-            BrowserExtension.self
+            BrowserExtension.self,
+            HomeConfiguration.self
         ])
 
         let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)

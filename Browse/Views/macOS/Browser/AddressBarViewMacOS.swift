@@ -37,7 +37,7 @@ struct AddressBarViewMacOS: View {
                         .font(.caption)
                 }
 
-                TextField("Search or enter address", text: $text)
+                TextField("Ask GPT, enter address, or type a command", text: $text)
                     .textFieldStyle(.plain)
                     .onSubmit {
                         onCommit()
