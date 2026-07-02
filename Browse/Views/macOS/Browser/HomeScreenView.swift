@@ -100,6 +100,36 @@ struct HomeScreenView: View {
         }
     }
 
+    private func navigateToURL() {
+        let result = CommandManager.shared.parse(searchText)
+
+        switch result {
+        case .url(let url):
+            if let activeTab = tabManager.activeTab {
+                activeTab.webPage.load(url: url)
+            } else {
+                tabManager.createTab(url: url, profileId: profileId)
+            }
+        case .search(let query):
+            let url = SearchProviderManager.shared.searchURL(for: query)
+            if let activeTab = tabManager.activeTab {
+                activeTab.webPage.load(url: url)
+            } else {
+                tabManager.createTab(url: url, profileId: profileId)
+            }
+        case .askGPT(let query):
+            let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            let url = URL(string: "https://chatgpt.com/?q=\(encodedQuery)")!
+            tabManager.createTab(url: url, profileId: profileId)
+        case .browserCommand(let action):
+            action()
+            searchText = ""
+        case .none:
+            break
+        }
+    }
+}
+
 struct PinnedSitesGridView: View {
     let profileId: UUID
     @Query private var bookmarks: [Bookmark]
@@ -154,34 +184,5 @@ struct RecentPagesView: View {
         .frame(maxWidth: 800, alignment: .leading)
     }
 }
-
-    private func navigateToURL() {
-        let result = CommandManager.shared.parse(searchText)
-
-        switch result {
-        case .url(let url):
-            if let activeTab = tabManager.activeTab {
-                activeTab.webPage.load(url: url)
-            } else {
-                tabManager.createTab(url: url, profileId: profileId)
-            }
-        case .search(let query):
-            let url = SearchProviderManager.shared.searchURL(for: query)
-            if let activeTab = tabManager.activeTab {
-                activeTab.webPage.load(url: url)
-            } else {
-                tabManager.createTab(url: url, profileId: profileId)
-            }
-        case .askGPT(let query):
-            let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-            let url = URL(string: "https://chatgpt.com/?q=\(encodedQuery)")!
-            tabManager.createTab(url: url, profileId: profileId)
-        case .browserCommand(let action):
-            action()
-            searchText = ""
-        case .none:
-            break
-        }
-    }
 }
 #endif
