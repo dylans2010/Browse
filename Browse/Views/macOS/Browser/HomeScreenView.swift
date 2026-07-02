@@ -1,4 +1,8 @@
+#if os(macOS)
+import AppKit
+import SwiftData
 import SwiftUI
+
 
 struct HomeScreenView: View {
     @Bindable var tabManager: TabManager
@@ -105,9 +109,7 @@ struct PinnedSitesGridView: View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 20) {
             ForEach(bookmarks.prefix(8)) { bookmark in
                 Button(action: {
-                    if let url = bookmark.url {
-                        onSelect(url)
-                    }
+                    onSelect(bookmark.url)
                 }) {
                     VStack {
                         Image(systemName: "globe")
@@ -182,3 +184,4 @@ struct RecentPagesView: View {
         }
     }
 }
+#endif
