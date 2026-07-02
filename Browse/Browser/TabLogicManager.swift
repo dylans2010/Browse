@@ -8,9 +8,9 @@ final class TabLogicManager {
     private let context = PersistenceProvider.shared.mainContext
 
     /// Detects duplicate tabs based on URL.
-    func findDuplicates(in tabs: [TabItem]) -> [TabItem] {
+    func findDuplicates(in tabs: [Tab]) -> [Tab] {
         var seenURLs = Set<URL>()
-        var duplicates: [TabItem] = []
+        var duplicates: [Tab] = []
 
         for tab in tabs {
             if let url = tab.url {
@@ -25,7 +25,7 @@ final class TabLogicManager {
     }
 
     /// Archives tabs that haven't been active for a certain period.
-    func archiveInactiveTabs(in tabs: [TabItem], thresholdDays: Int = 7) {
+    func archiveInactiveTabs(in tabs: [Tab], thresholdDays: Int = 7) {
         let now = Date()
         let threshold = TimeInterval(thresholdDays * 24 * 60 * 60)
 

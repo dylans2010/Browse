@@ -14,22 +14,28 @@ final class WebPageManager: NSObject, WKNavigationDelegate, WKUIDelegate {
     var isReaderAvailable: Bool = false
 
     var onURLChange: ((URL, String) -> Void)?
+    private let tabID: UUID
+    private weak var tabManager: TabManager?
+    private var coordinator: WebViewCoordinator?
 
-    override init() {
-        let config = WKWebViewConfiguration()
-        let pool = WKProcessPool()
-        config.processPool = pool
-
-        let prefs = WKWebpagePreferences()
-        prefs.allowsContentJavaScript = true
-        config.defaultWebpagePreferences = prefs
-
-        self.webView = WKWebView(frame: .zero, configuration: config)
+    init(tabID: UUID, webView: WKWebView, tabManager: TabManager) {
+        self.tabID = tabID
+        self.webView = webView
+        self.tabManager = tabManager
         super.init()
+
+        self.coordinator = WebViewCoordinator(tabID: tabID, tabManager: tabManager)
+
         self.webView.navigationDelegate = self
         self.webView.uiDelegate = self
 
+        setupConfiguration()
         setupObservers()
+    }
+
+    private func setupConfiguration() {
+        webView.configuration.userContentController.add(coordinator!, name: "audioActivityBridge")
+        webView.configuration.userContentController.addUserScript(UserScriptLibrary.shared.audioActivityScript)
     }
 
     private func setupObservers() {
@@ -46,47 +52,30 @@ final class WebPageManager: NSObject, WKNavigationDelegate, WKUIDelegate {
         webView.load(request)
     }
 
-    /// Injects custom CSS into the current page.
-    func injectCSS(_ css: String) {
-        let script = """
-        var style = document.getElementById('browse-custom-css');
-        if (!style) {
-            style = document.createElement('style');
-            style.id = 'browse-custom-css';
-            document.head.appendChild(style);
-        }
-        style.innerHTML = `\(css)`;
-        """
-        webView.evaluateJavaScript(script)
-    }
-
-    /// Injects custom JavaScript into the current page.
-    func injectJS(_ js: String) {
-        webView.evaluateJavaScript(js)
-    }
-
-    func goBack() { webView.goBack() }
-    func goForward() { webView.goForward() }
-    func reload() { webView.reload() }
-    func stopLoading() { webView.stopLoading() }
-
-    func getPageContent() async throws -> String {
-        let script = "document.body.innerText"
-        return try await webView.evaluateJavaScript(script) as? String ?? ""
-    }
-
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             switch keyPath {
-            case "estimatedProgress": self.estimatedProgress = self.webView.estimatedProgress
-            case "title": self.title = self.webView.title ?? ""
+            case "estimatedProgress":
+                self.estimatedProgress = self.webView.estimatedProgress
+                self.tabManager?.updateLoadingState(for: self.tabID, isLoading: self.webView.isLoading, progress: self.webView.estimatedProgress)
+            case "title":
+                self.title = self.webView.title ?? ""
+                self.tabManager?.updateTitle(for: self.tabID, title: self.title)
             case "URL":
                 self.url = self.webView.url
                 if let url = self.url {
                     self.onURLChange?(url, self.title)
+                    Task {
+                        await FaviconCache.shared.prefetch(for: self.webView, domain: url.host ?? "")
+                        if let data = await FaviconCache.shared.favicon(for: url.host ?? "") {
+                            self.tabManager?.updateFavicon(for: self.tabID, data: data)
+                        }
+                    }
                 }
             case "isLoading":
                 self.isLoading = self.webView.isLoading
+                self.tabManager?.updateLoadingState(for: self.tabID, isLoading: self.isLoading, progress: self.estimatedProgress)
                 if !self.isLoading {
                     self.isReaderAvailable = true
                 }
@@ -98,6 +87,7 @@ final class WebPageManager: NSObject, WKNavigationDelegate, WKUIDelegate {
     }
 
     deinit {
+        webView.configuration.userContentController.removeScriptMessageHandler(forName: "audioActivityBridge")
         webView.removeObserver(self, forKeyPath: "estimatedProgress")
         webView.removeObserver(self, forKeyPath: "title")
         webView.removeObserver(self, forKeyPath: "URL")

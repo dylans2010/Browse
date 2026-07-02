@@ -11,16 +11,14 @@ struct AddressBarViewMacOS: View {
     var onCommit: () -> Void
     var onReload: () -> Void
 
-    private var backgroundColor: Color {
-        return Color(NSColor.controlBackgroundColor)
-    }
+    @State private var debounceTask: Task<Void, Never>?
 
     var body: some View {
         ZStack(alignment: .leading) {
             if isLoading {
                 GeometryReader { geo in
                     Rectangle()
-                        .fill(Color.blue.opacity(0.2))
+                        .fill(Color.accentColor.opacity(0.2))
                         .frame(width: geo.size.width * CGFloat(progress))
                 }
             }
@@ -29,18 +27,27 @@ struct AddressBarViewMacOS: View {
                 if isReaderAvailable {
                     Button(action: { isReaderModeActive.toggle() }) {
                         Image(systemName: "text.justify.left")
-                            .foregroundColor(isReaderModeActive ? .blue : .secondary)
+                            .foregroundColor(isReaderModeActive ? .accentColor : .secondary)
                     }
                     .buttonStyle(.plain)
-                    .help("Reader Mode")
                 } else {
                     Image(systemName: "lock.fill")
                         .foregroundColor(.secondary)
                         .font(.caption)
                 }
 
-                TextField("Ask GPT, enter address, or type a command", text: $text)
+                TextField("Search or enter address", text: $text)
                     .textFieldStyle(.plain)
+                    .onChange(of: text) { _, newValue in
+                        // Debounce logic for suggestions or other expensive operations
+                        debounceTask?.cancel()
+                        debounceTask = Task {
+                            try? await Task.sleep(nanoseconds: 250_000_000) // 250ms
+                            if !Task.isCancelled {
+                                // Perform suggestions fetch
+                            }
+                        }
+                    }
                     .onSubmit {
                         onCommit()
                     }
@@ -53,21 +60,20 @@ struct AddressBarViewMacOS: View {
                     .buttonStyle(.plain)
                 }
 
-                // Fixed: previously called onCommit() (navigate); now correctly reloads the page.
                 Button(action: { onReload() }) {
                     Image(systemName: "arrow.clockwise")
                         .foregroundColor(.secondary)
                 }
                 .buttonStyle(.plain)
             }
-            .padding(.horizontal, 8)
+            .padding(.horizontal, 10)
             .padding(.vertical, 6)
         }
-        .background(backgroundColor)
-        .cornerRadius(8)
+        .background(Color(NSColor.controlBackgroundColor))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
         .overlay(
-            RoundedRectangle(cornerRadius: 8)
-                .stroke(Color.secondary.opacity(0.2), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.secondary.opacity(0.2), lineWidth: 0.5)
         )
     }
 }

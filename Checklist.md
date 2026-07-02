@@ -166,6 +166,16 @@
 - [x] Xcode Project registration check (No orphan files)
 - [x] Final Audit
 
+## macOS Performance & Redesign (AED-BROWSE-MACOS-003)
+- [ ] Eliminate whole-array reassignment anti-pattern in `TabManager`.
+- [ ] Implement `WKWebView` pooling in `BrowserEngine` and `WebViewPool`.
+- [ ] Ensure `WebViewWrapperMacOS` retrieves `WKWebView` from the pool.
+- [ ] Implement debouncing for address bar and expensive UI interactions.
+- [ ] Add and pass `TabSwitchPerformanceTests`.
+- [ ] Add and pass `AddressBarResponsivenessTests`.
+- [ ] Implement genuine per-tab metadata pipeline (favicon, title, loading, audio).
+- [ ] Complete Safari-parity redesign of window chrome, toolbar, tab bar, sidebar, and Start Page.
+
 ## Verified Audit Findings (Authoritative Open Work)
 
 Audit status: the legacy checked boxes above are retained as historical claims, but the items below are the verified open work that must be completed before this repository can be considered production-ready.
