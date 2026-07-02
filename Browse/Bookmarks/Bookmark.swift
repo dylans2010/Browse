@@ -10,8 +10,9 @@ final class Bookmark {
     var createdAt: Date
     var profileId: UUID
     var isFavorite: Bool
+    var favoriteSortIndex: Int
 
-    init(url: URL, title: String, profileId: UUID, folder: String? = nil, tags: [String] = [], isFavorite: Bool = false) {
+    init(url: URL, title: String, profileId: UUID, folder: String? = nil, tags: [String] = [], isFavorite: Bool = false, favoriteSortIndex: Int = 0) {
         self.url = url
         self.title = title
         self.profileId = profileId
@@ -19,5 +20,6 @@ final class Bookmark {
         self.tags = tags
         self.createdAt = Date()
         self.isFavorite = isFavorite
+        self.favoriteSortIndex = favoriteSortIndex
     }
 }

@@ -17,8 +17,8 @@ final class SessionSnapshotManager {
         snapshots = (try? context.fetch(descriptor)) ?? []
     }
 
-    func createSnapshot(name: String, profileId: UUID, tabs: [TabItem]) {
-        let tabSnapshots = tabs.map { TabItemSnapshot(url: $0.url, title: $0.title) }
+    func createSnapshot(name: String, profileId: UUID, tabs: [Tab]) {
+        let tabSnapshots = tabs.map { TabSnapshot(url: $0.url, title: $0.title) }
         let snapshot = SessionSnapshot(name: name, profileId: profileId, tabItems: tabSnapshots)
         context.insert(snapshot)
         try? context.save()

@@ -8,8 +8,8 @@ final class StartupManager {
     private let context = PersistenceProvider.shared.mainContext
 
     /// Recommends tabs to recover based on the last session.
-    func getRecoveryRecommendations(for profileId: UUID) -> [TabItem] {
-        let descriptor = FetchDescriptor<TabItem>(
+    func getRecoveryRecommendations(for profileId: UUID) -> [Tab] {
+        let descriptor = FetchDescriptor<Tab>(
             predicate: #Predicate { $0.profileId == profileId },
             sortBy: [SortDescriptor(\.lastActive, order: .reverse)]
         )

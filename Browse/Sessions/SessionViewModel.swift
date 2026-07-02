@@ -7,7 +7,7 @@ final class SessionViewModel {
 
     var snapshots: [SessionSnapshot] { manager.snapshots }
 
-    func takeSnapshot(name: String, profileId: UUID, tabs: [TabItem]) {
+    func takeSnapshot(name: String, profileId: UUID, tabs: [Tab]) {
         manager.createSnapshot(name: name, profileId: profileId, tabs: tabs)
     }
 }

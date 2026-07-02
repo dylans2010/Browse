@@ -8,9 +8,9 @@ final class SessionSnapshot {
     var profileId: UUID
     var workspaceId: UUID?
     var createdAt: Date
-    var tabItems: [TabItemSnapshot]
+    var tabItems: [TabSnapshot]
 
-    init(name: String, profileId: UUID, workspaceId: UUID? = nil, tabItems: [TabItemSnapshot]) {
+    init(name: String, profileId: UUID, workspaceId: UUID? = nil, tabItems: [TabSnapshot]) {
         self.id = UUID()
         self.name = name
         self.profileId = profileId
@@ -21,7 +21,7 @@ final class SessionSnapshot {
 }
 
 @Model
-final class TabItemSnapshot {
+final class TabSnapshot {
     var url: URL?
     var title: String
 

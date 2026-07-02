@@ -9,7 +9,7 @@ final class SessionManager {
         // Use a more refined approach: update existing items or delete only session-related ones
         let profileId = tabs.first?.item.profileId ?? UUID()
 
-        let fetchDescriptor = FetchDescriptor<TabItem>(
+        let fetchDescriptor = FetchDescriptor<Tab>(
             predicate: #Predicate { $0.profileId == profileId }
         )
 
@@ -20,7 +20,7 @@ final class SessionManager {
         }
 
         for tab in tabs {
-            let item = TabItem(
+            let item = Tab(
                 url: tab.webPage.url,
                 title: tab.webPage.title,
                 profileId: tab.item.profileId,
@@ -33,8 +33,8 @@ final class SessionManager {
         try? context.save()
     }
 
-    func restoreSession(profileId: UUID) -> [TabItem] {
-        let fetchDescriptor = FetchDescriptor<TabItem>(
+    func restoreSession(profileId: UUID) -> [Tab] {
+        let fetchDescriptor = FetchDescriptor<Tab>(
             predicate: #Predicate { $0.profileId == profileId },
             sortBy: [SortDescriptor(\.lastActive)]
         )

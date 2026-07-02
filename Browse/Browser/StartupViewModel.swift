@@ -5,7 +5,7 @@ import Observation
 final class StartupViewModel {
     private let manager = StartupManager.shared
 
-    var recommendations: [TabItem] = []
+    var recommendations: [Tab] = []
     var smartURLs: [URL] = []
 
     func loadStartupData(for profileId: UUID) {
