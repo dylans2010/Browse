@@ -1,4 +1,6 @@
+#if os(macOS)
 import SwiftUI
+import AppKit
 import WebKit
 
 struct DiagnosticsViewMacOS: View {
@@ -26,3 +28,4 @@ struct DiagnosticsViewMacOS: View {
         .frame(minWidth: 300)
     }
 }
+#endif

@@ -1,4 +1,6 @@
+#if os(macOS)
 import SwiftUI
+import AppKit
 
 struct ThemesViewMacOS: View {
     @State var viewModel = ThemeViewModel()
@@ -24,3 +26,4 @@ struct ThemesViewMacOS: View {
         }
     }
 }
+#endif

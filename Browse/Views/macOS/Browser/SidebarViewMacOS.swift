@@ -1,4 +1,6 @@
+#if os(macOS)
 import SwiftUI
+import AppKit
 import SwiftData
 
 struct SidebarViewMacOS: View {
@@ -177,3 +179,4 @@ struct SidebarCustomizerView: View {
         .frame(width: 350, height: 450)
     }
 }
+#endif

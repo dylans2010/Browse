@@ -1,4 +1,6 @@
+#if os(macOS)
 import SwiftUI
+import AppKit
 
 struct CustomSiteEditorMacOS: View {
     @State var viewModel: CustomSiteViewModel
@@ -70,3 +72,4 @@ struct CustomSiteEditorMacOS: View {
         .background(VisualEffectView(material: .hudWindow, blendingMode: .behindWindow))
     }
 }
+#endif

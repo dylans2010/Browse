@@ -1,4 +1,6 @@
+#if os(macOS)
 import SwiftUI
+import AppKit
 
 struct AnnotationsViewMacOS: View {
     @State var viewModel: NoteViewModel
@@ -34,3 +36,4 @@ struct AnnotationsViewMacOS: View {
         .frame(minWidth: 300)
     }
 }
+#endif

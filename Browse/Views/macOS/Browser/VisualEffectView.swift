@@ -1,5 +1,5 @@
-import SwiftUI
 #if os(macOS)
+import SwiftUI
 import AppKit
 
 struct VisualEffectView: NSViewRepresentable {

@@ -1,3 +1,4 @@
+#if os(macOS)
 import SwiftUI
 import WebKit
 #if os(macOS)
@@ -168,3 +169,4 @@ private struct CustomSiteDestinationView: View {
             }
     }
 }
+#endif
