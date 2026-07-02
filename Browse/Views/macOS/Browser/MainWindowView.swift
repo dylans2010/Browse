@@ -1,4 +1,6 @@
+#if os(macOS)
 import SwiftUI
+import AppKit
 import SwiftData
 
 struct MainWindowView: View {
@@ -201,3 +203,4 @@ struct CustomSiteEditorMacOSWrapper: View {
         }
     }
 }
+#endif

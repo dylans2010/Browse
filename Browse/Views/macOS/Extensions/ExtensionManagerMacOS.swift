@@ -1,4 +1,6 @@
+#if os(macOS)
 import SwiftUI
+import AppKit
 
 struct ExtensionManagerMacOS: View {
     @State var viewModel: ExtensionViewModel
@@ -39,3 +41,4 @@ struct ExtensionManagerMacOS: View {
         .onAppear { viewModel.loadExtensions() }
     }
 }
+#endif

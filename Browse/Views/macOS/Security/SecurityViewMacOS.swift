@@ -1,4 +1,6 @@
+#if os(macOS)
 import SwiftUI
+import AppKit
 import WebKit
 
 struct SecurityViewMacOS: View {
@@ -34,3 +36,4 @@ struct SecurityViewMacOS: View {
         }
     }
 }
+#endif

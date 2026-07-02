@@ -1,4 +1,6 @@
+#if os(macOS)
 import SwiftUI
+import AppKit
 
 struct SessionsViewMacOS: View {
     @State var viewModel: SessionViewModel
@@ -19,3 +21,4 @@ struct SessionsViewMacOS: View {
         .frame(minWidth: 300)
     }
 }
+#endif

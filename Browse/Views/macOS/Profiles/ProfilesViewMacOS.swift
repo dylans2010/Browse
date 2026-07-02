@@ -1,4 +1,6 @@
+#if os(macOS)
 import SwiftUI
+import AppKit
 import SwiftData
 
 struct ProfilesViewMacOS: View {
@@ -32,3 +34,4 @@ struct ProfilesViewMacOS: View {
         modelContext.insert(newProfile)
     }
 }
+#endif

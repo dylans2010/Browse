@@ -1,4 +1,6 @@
+#if os(macOS)
 import SwiftUI
+import AppKit
 
 struct PrivacyViewMacOS: View {
     @State var viewModel = PermissionViewModel()
@@ -20,3 +22,4 @@ struct PrivacyViewMacOS: View {
         .onAppear { viewModel.loadPermissions(for: currentHost) }
     }
 }
+#endif

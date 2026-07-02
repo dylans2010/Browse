@@ -1,4 +1,6 @@
+#if os(macOS)
 import SwiftUI
+import AppKit
 
 struct SearchViewMacOS: View {
     @Bindable var manager = SearchProviderManager.shared
@@ -22,3 +24,4 @@ struct SearchViewMacOS: View {
         return engine.name
     }
 }
+#endif

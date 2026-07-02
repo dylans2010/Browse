@@ -1,4 +1,6 @@
+#if os(macOS)
 import SwiftUI
+import AppKit
 import WebKit
 
 struct WebViewMacOS: NSViewRepresentable {
@@ -29,3 +31,4 @@ struct WebViewMacOS: NSViewRepresentable {
         }
     }
 }
+#endif

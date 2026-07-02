@@ -1,4 +1,6 @@
+#if os(macOS)
 import SwiftUI
+import AppKit
 
 struct AddressBarViewMacOS: View {
     @Binding var text: String
@@ -69,3 +71,4 @@ struct AddressBarViewMacOS: View {
         )
     }
 }
+#endif
