@@ -112,7 +112,7 @@ struct HomeScreenView: View {
             }
         case .search(let query):
             guard let url = SearchProviderManager.shared.searchURL(for: query) else {
-                Logger.browser.warning("Failed to build search URL for query: \(query, privacy: .public)")
+                LoggingService.shared.error("Failed to build search URL for query: \(query)")
                 break
             }
             if let activeTab = tabManager.activeTab {
