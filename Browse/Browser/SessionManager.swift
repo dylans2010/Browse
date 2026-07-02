@@ -5,7 +5,7 @@ final class SessionManager {
     static let shared = SessionManager()
     private let context = PersistenceProvider.shared.mainContext
 
-    func saveSession(tabs: [TabManager.Tab]) {
+    func saveSession(tabs: [TabManager.TabWrapper]) {
         // Use a more refined approach: update existing items or delete only session-related ones
         let profileId = tabs.first?.item.profileId ?? UUID()
 

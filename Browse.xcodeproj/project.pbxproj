@@ -53,11 +53,16 @@
 		67B1AA8827BF6EDB3EAC67F3 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B815132D263FC0C06CE8CA /* SessionManager.swift */; };
 		5FD4EEAA818AC1DD5185CAA0 /* StartupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CEC1CE357EB6F7C9F9F649 /* StartupManager.swift */; };
 		F81E25CC7F438E4ABBD24086 /* StartupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2339232C305AB6A8C5248D62 /* StartupViewModel.swift */; };
-		07E5FCBF3455B1A71A0F1B0F /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A9AC23315CE49BAAA981C9 /* TabItem.swift */; };
+		B10000000000000000000002 /* BrowserEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000001 /* BrowserEngine.swift */; };
+		B10000000000000000000004 /* FaviconCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000003 /* FaviconCache.swift */; };
+		07E5FCBF3455B1A71A0F1B0F /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A9AC23315CE49BAAA981C9 /* Tab.swift */; };
 		B18913115C5C29403DA2D6BE /* TabLogicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5320ED2E546B2F8755F8322 /* TabLogicManager.swift */; };
 		C705306EE3498B6446E10B01 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3551C246622D55C1F15ADA /* TabManager.swift */; };
 		EB95A50C5E802BA4E016B935 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453205C7539A93116E7A68C2 /* TabViewModel.swift */; };
+		B10000000000000000000006 /* UserScriptLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000005 /* UserScriptLibrary.swift */; };
 		213872510CE91AEFF928DC13 /* WebPageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67100A46790883E728388D48 /* WebPageManager.swift */; };
+		B10000000000000000000008 /* WebViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000007 /* WebViewCoordinator.swift */; };
+		B1000000000000000000000A /* WebViewPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000009 /* WebViewPool.swift */; };
 		CAA3B8EC9C4FFB3FA1E9C891 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381951F427F5DC603A37ABD2 /* AnalyticsService.swift */; };
 		4682A0FA169BC3059D2D5D59 /* CommandPaletteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C00648BC1C7BFCB05A1486 /* CommandPaletteViewModel.swift */; };
 		C228CC721243A87225A3BA4B /* GestureCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E637C3F7A33697A326363C9D /* GestureCommand.swift */; };
@@ -196,11 +201,16 @@
 		35B815132D263FC0C06CE8CA /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		63CEC1CE357EB6F7C9F9F649 /* StartupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupManager.swift; sourceTree = "<group>"; };
 		2339232C305AB6A8C5248D62 /* StartupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupViewModel.swift; sourceTree = "<group>"; };
-		30A9AC23315CE49BAAA981C9 /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
+		B10000000000000000000001 /* BrowserEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserEngine.swift; sourceTree = "<group>"; };
+		B10000000000000000000003 /* FaviconCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaviconCache.swift; sourceTree = "<group>"; };
+		30A9AC23315CE49BAAA981C9 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		E5320ED2E546B2F8755F8322 /* TabLogicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabLogicManager.swift; sourceTree = "<group>"; };
 		0F3551C246622D55C1F15ADA /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
 		453205C7539A93116E7A68C2 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
+		B10000000000000000000005 /* UserScriptLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserScriptLibrary.swift; sourceTree = "<group>"; };
 		67100A46790883E728388D48 /* WebPageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPageManager.swift; sourceTree = "<group>"; };
+		B10000000000000000000007 /* WebViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewCoordinator.swift; sourceTree = "<group>"; };
+		B10000000000000000000009 /* WebViewPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewPool.swift; sourceTree = "<group>"; };
 		381951F427F5DC603A37ABD2 /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		41C00648BC1C7BFCB05A1486 /* CommandPaletteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteViewModel.swift; sourceTree = "<group>"; };
 		E637C3F7A33697A326363C9D /* GestureCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureCommand.swift; sourceTree = "<group>"; };
@@ -406,19 +416,40 @@
 			path = Bookmarks;
 			sourceTree = "<group>";
 		};
+		B00000000000000000000001 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000001 /* BrowserEngine.swift */,
+				B10000000000000000000003 /* FaviconCache.swift */,
+				B10000000000000000000005 /* UserScriptLibrary.swift */,
+				B10000000000000000000007 /* WebViewCoordinator.swift */,
+				B10000000000000000000009 /* WebViewPool.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		B00000000000000000000002 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				30A9AC23315CE49BAAA981C9 /* Tab.swift */,
+				E5320ED2E546B2F8755F8322 /* TabLogicManager.swift */,
+				0F3551C246622D55C1F15ADA /* TabManager.swift */,
+				453205C7539A93116E7A68C2 /* TabViewModel.swift */,
+				67100A46790883E728388D48 /* WebPageManager.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
 		533B1CF718E1F804EDB4DBF6 /* Browser */ = {
 			isa = PBXGroup;
 			children = (
+				B00000000000000000000001 /* Engine */,
+				B00000000000000000000002 /* Tabs */,
 				50CD5C0CA86FC72D75EAF3CE /* PageInfoManager.swift */,
 				2D4F3E6543559B2ECFFF24E8 /* PageInfoViewModel.swift */,
 				35B815132D263FC0C06CE8CA /* SessionManager.swift */,
 				63CEC1CE357EB6F7C9F9F649 /* StartupManager.swift */,
 				2339232C305AB6A8C5248D62 /* StartupViewModel.swift */,
-				30A9AC23315CE49BAAA981C9 /* TabItem.swift */,
-				E5320ED2E546B2F8755F8322 /* TabLogicManager.swift */,
-				0F3551C246622D55C1F15ADA /* TabManager.swift */,
-				453205C7539A93116E7A68C2 /* TabViewModel.swift */,
-				67100A46790883E728388D48 /* WebPageManager.swift */,
 			);
 			path = Browser;
 			sourceTree = "<group>";
@@ -1100,11 +1131,16 @@
 				67B1AA8827BF6EDB3EAC67F3 /* SessionManager.swift in Sources */,
 				5FD4EEAA818AC1DD5185CAA0 /* StartupManager.swift in Sources */,
 				F81E25CC7F438E4ABBD24086 /* StartupViewModel.swift in Sources */,
-				07E5FCBF3455B1A71A0F1B0F /* TabItem.swift in Sources */,
+				B10000000000000000000002 /* BrowserEngine.swift in Sources */,
+				B10000000000000000000004 /* FaviconCache.swift in Sources */,
+				07E5FCBF3455B1A71A0F1B0F /* Tab.swift in Sources */,
 				B18913115C5C29403DA2D6BE /* TabLogicManager.swift in Sources */,
 				C705306EE3498B6446E10B01 /* TabManager.swift in Sources */,
 				EB95A50C5E802BA4E016B935 /* TabViewModel.swift in Sources */,
+				B10000000000000000000006 /* UserScriptLibrary.swift in Sources */,
 				213872510CE91AEFF928DC13 /* WebPageManager.swift in Sources */,
+				B10000000000000000000008 /* WebViewCoordinator.swift in Sources */,
+				B1000000000000000000000A /* WebViewPool.swift in Sources */,
 				CAA3B8EC9C4FFB3FA1E9C891 /* AnalyticsService.swift in Sources */,
 				4682A0FA169BC3059D2D5D59 /* CommandPaletteViewModel.swift in Sources */,
 				C228CC721243A87225A3BA4B /* GestureCommand.swift in Sources */,

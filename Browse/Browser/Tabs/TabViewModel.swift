@@ -10,7 +10,7 @@ final class TabViewModel {
         self.tabManager = tabManager
     }
 
-    var tabs: [TabManager.Tab] { tabManager.tabs }
+    var tabs: [TabManager.TabWrapper] { tabManager.tabs }
 
     func cleanupDuplicates() {
         let tabItems = tabs.map { $0.item }

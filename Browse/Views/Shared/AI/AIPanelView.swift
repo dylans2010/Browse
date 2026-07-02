@@ -5,7 +5,7 @@ struct AIPanelView: View {
     @Bindable var conversationManager: ConversationManager
     @Bindable var modelManager: ModelManager
     var aiService: AIService
-    var activeTab: TabManager.Tab?
+    var activeTab: TabManager.TabWrapper?
 
     @State private var inputText: String = ""
 
@@ -71,7 +71,7 @@ struct AIPanelView: View {
         .frame(minWidth: 300)
     }
 
-    private func summarizePage(_ tab: TabManager.Tab) {
+    private func summarizePage(_ tab: TabManager.TabWrapper) {
         Task {
             let content = try? await tab.webPage.getPageContent()
             let prompt = PromptBuilder.build(.summarize(content: content ?? ""))
@@ -79,7 +79,7 @@ struct AIPanelView: View {
         }
     }
 
-    private func explainPage(_ tab: TabManager.Tab) {
+    private func explainPage(_ tab: TabManager.TabWrapper) {
         Task {
             let content = try? await tab.webPage.getPageContent()
             let prompt = PromptBuilder.build(.explain(content: content ?? ""))
