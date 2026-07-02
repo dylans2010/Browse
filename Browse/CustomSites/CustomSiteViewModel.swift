@@ -6,6 +6,8 @@ final class CustomSiteViewModel {
     private let manager = CustomSiteManager.shared
 
     var currentConfig: CustomSiteConfig?
+    var hiddenElements: [String] = []
+    var isInspectorActive: Bool = false
 
     func loadConfig(for host: String) {
         currentConfig = manager.getConfig(for: host)
@@ -38,6 +40,39 @@ final class CustomSiteViewModel {
         }
         """
         currentConfig?.customCSS = generatedCSS
+        manager.saveConfig()
+    }
+
+    func toggleElementInspector() {
+        isInspectorActive.toggle()
+        // Inject JS to handle element selection
+        let script = """
+        (function() {
+            if (window.browseInspectorActive) return;
+            window.browseInspectorActive = true;
+            document.addEventListener('mouseover', function(e) {
+                if (!window.browseInspectorActive) return;
+                e.target.style.outline = '2px solid blue';
+            });
+            document.addEventListener('mouseout', function(e) {
+                e.target.style.outline = '';
+            });
+            document.addEventListener('click', function(e) {
+                if (!window.browseInspectorActive) return;
+                e.preventDefault();
+                e.stopPropagation();
+                e.target.style.display = 'none';
+                // Logic to report hidden element back
+            });
+        })();
+        """
+        currentConfig?.customJS += script
+        manager.saveConfig()
+    }
+
+    func restoreHiddenElements() {
+        hiddenElements.removeAll()
+        // Logic to clear display:none from CSS
         manager.saveConfig()
     }
 }

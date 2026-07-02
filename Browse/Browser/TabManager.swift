@@ -12,6 +12,8 @@ final class TabManager {
 
     var tabs: [Tab] = []
     var activeTabId: UUID?
+    var pinnedTabIds: Set<UUID> = []
+    var recentlyClosedTabs: [TabItem] = []
     private let context = PersistenceProvider.shared.mainContext
 
     var activeTab: Tab? {
@@ -26,6 +28,9 @@ final class TabManager {
         let webPage = WebPageManager()
         if let url = url {
             webPage.load(url: url)
+        } else {
+            // New tab with no URL defaults to home
+            webPage.load(url: URL(string: "about:blank")!)
         }
         let tab = Tab(id: item.id, item: item, webPage: webPage)
         tabs.append(tab)
@@ -35,14 +40,40 @@ final class TabManager {
     func closeTab(id: UUID) {
         if let index = tabs.firstIndex(where: { $0.id == id }) {
             let tab = tabs[index]
+            recentlyClosedTabs.append(tab.item)
             context.delete(tab.item)
             try? context.save()
             tabs.remove(at: index)
+            pinnedTabIds.remove(id)
         }
 
         if activeTabId == id {
             activeTabId = tabs.last?.id
         }
+    }
+
+    func closeAllTabs() {
+        for tab in tabs {
+            recentlyClosedTabs.append(tab.item)
+            context.delete(tab.item)
+        }
+        try? context.save()
+        tabs.removeAll()
+        pinnedTabIds.removeAll()
+        activeTabId = nil
+    }
+
+    func pinTab(id: UUID) {
+        pinnedTabIds.insert(id)
+    }
+
+    func unpinTab(id: UUID) {
+        pinnedTabIds.remove(id)
+    }
+
+    func reopenLastClosedTab(profileId: UUID) {
+        guard let last = recentlyClosedTabs.popLast() else { return }
+        createTab(url: last.url, profileId: profileId)
     }
 
     func selectTab(id: UUID) {

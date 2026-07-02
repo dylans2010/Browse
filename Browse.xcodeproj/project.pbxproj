@@ -312,6 +312,11 @@
 		57CB903D1C51FB51CB14A6FF /* Browse */ = {
 			isa = PBXGroup;
 			children = (
+				DBDC7CA4BA1C4D2D8EE7DD34 /* CommandManager.swift */,
+				044205BC2B2144E1964CBE0D /* VisualEffectView.swift */,
+				DA37768F1785472E819EAE6D /* HomeConfiguration.swift */,
+				0EB7BF024A7549D29C6293A7 /* HomeScreenCustomizeView.swift */,
+				7BD7BFFF7EA34DD4AEB71556 /* HomeScreenView.swift */,
 				C6955FFBA27D2EC29B41C1C5 /* AI */,
 				B2475A1DD5A59D1827796B7D /* Annotations */,
 				9081B34C051D9E2E6F2D94D5 /* App */,
@@ -1031,6 +1036,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF412F8C8F7C42FD85DC03B5 /* CommandManager.swift in Sources */,
+				DA534AC4B5B141C0ACDA6304 /* VisualEffectView.swift in Sources */,
+				74B155DA95EB4DB48F92EC69 /* HomeConfiguration.swift in Sources */,
+				774A96422B6E40AF9EAC66AF /* HomeScreenCustomizeView.swift in Sources */,
+				B1F17FC3B4434D0587D7000E /* HomeScreenView.swift in Sources */,
 				A2C12DA05ED3B4FF3BC32EBF /* AIContextManager.swift in Sources */,
 				53B9F9243F5A290A04090B28 /* AIErrorHandler.swift in Sources */,
 				7EFEF05BA3289F577C4214BE /* AIRateLimiter.swift in Sources */,

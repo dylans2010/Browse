@@ -28,4 +28,22 @@ final class StartupManager {
         let history = (try? context.fetch(descriptor)) ?? []
         return Array(history.prefix(3)).map { $0.url }
     }
+
+    func getHomeConfiguration(for profileId: UUID) -> HomeConfiguration {
+        let descriptor = FetchDescriptor<HomeConfiguration>(
+            predicate: #Predicate { $0.profileId == profileId }
+        )
+        if let config = (try? context.fetch(descriptor))?.first {
+            return config
+        } else {
+            let newConfig = HomeConfiguration(profileId: profileId)
+            context.insert(newConfig)
+            try? context.save()
+            return newConfig
+        }
+    }
+
+    func saveHomeConfiguration() {
+        try? context.save()
+    }
 }

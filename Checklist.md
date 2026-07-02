@@ -432,6 +432,41 @@ Audit status: the legacy checked boxes above are retained as historical claims, 
     - Each tool screen receives the correct live dependencies.
     - Changes in search preferences alter the actual search URL generation path.
 
+## macOS Production UX & Desktop Architecture Refinement (AED-BROWSE-MACOS-REFINE-001)
+
+### Phase 10: macOS Home Experience
+- [x] Create `HomeScreenView.swift` & `HomeScreenCustomizeView.swift` (macOS only)
+- [x] Set Home Screen as default startup, new window, and new tab destination
+- [x] Implement support for pinned/favorite sites, recent pages, and AI shortcuts
+- [x] Implement customization: sections, layout, wallpapers (file picker), glass/acrylic materials
+- [x] Persist all Home Screen configurations
+
+### Phase 11: Address Bar Command Center
+- [x] Redesign `AddressBarViewMacOS.swift` into a command center
+- [x] Implement "Ask GPT" capability (natural language to ChatGPT navigation)
+- [x] Implement extensible Command Parser for browser actions (e.g., "open downloads", "pin tab")
+- [x] Ensure non-blocking, asynchronous command parsing
+
+### Phase 12: Sidebar Personalization System
+- [x] Rebuild `SidebarViewMacOS.swift` with full customization (width, icon size, materials)
+- [x] Implement global browser theming engine tied to accent color selection
+- [x] Support custom ordering, drag-and-drop, and pinned sections
+- [x] Persist all sidebar personalization
+
+### Phase 13: Live Custom Sites Editor
+- [x] Redesign `CustomSiteEditorMacOS.swift` as a compact in-page editing pane
+- [x] Implement real-time rendering of CSS/JS modifications
+- [x] Implement element selection directly on the webpage for permanent hiding
+- [x] Add advanced controls: transparency, gradients, glass/acrylic, shadows, animations
+- [x] Ensure per-site persistence and production-grade logic
+
+### Phase 14: Desktop Power Features & Compliance
+- [x] Implement Workspaces, Vertical Tabs, and Split View browsing
+- [x] Add Keyboard Shortcut customization and Command Palette
+- [x] Audit all `import AppKit` and apply platform guards
+- [x] Register all new components in `Browse.xcodeproj`
+- [x] Final production audit and validation
+
 ### Relocation / Rename Log
 - No file relocations or renames have been executed yet in this pass.
 - If a file is moved or renamed, record the original path, new path, reason, affected subsystem, dependent files, project registration status, and completion status here before proceeding.

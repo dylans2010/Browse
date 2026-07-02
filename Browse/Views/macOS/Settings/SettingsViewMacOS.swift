@@ -1,6 +1,8 @@
 import SwiftUI
 import WebKit
+#if os(macOS)
 import AppKit
+#endif
 import UniformTypeIdentifiers
 
 // MARK: – Main Settings View (macOS)
@@ -116,6 +118,7 @@ private extension SettingsViewMacOS {
     /// Runs the export‑data workflow.
     func exportBrowserData() async {
         guard let url = try? await DataPortabilityManager.shared.exportData() else { return }
+        #if os(macOS)
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [.json]
         savePanel.canCreateDirectories = true
@@ -128,6 +131,7 @@ private extension SettingsViewMacOS {
            let destinationURL = savePanel.url {
             try? FileManager.default.copyItem(at: url, to: destinationURL)
         }
+        #endif
     }
 }
 
