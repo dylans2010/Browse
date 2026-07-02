@@ -185,7 +185,10 @@ struct CustomSiteEditorMacOSWrapper: View {
                 tabManager.createTab(url: url, profileId: profiles.first?.id ?? UUID())
             }
         case .search(let query):
-            let url = SearchProviderManager.shared.searchURL(for: query)
+            guard let url = SearchProviderManager.shared.searchURL(for: query) else {
+                LoggingService.shared.error("Failed to build search URL for query: \(query)")
+                break
+            }
             if let activeTab = tabManager.activeTab {
                 activeTab.webPage.load(url: url)
             } else {
