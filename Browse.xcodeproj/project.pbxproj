@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA534AC4B5B141C0ACDA6304 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044205BC2B2144E1964CBE0D /* VisualEffectView.swift */; };
 		74B155DA95EB4DB48F92EC69 /* HomeConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA37768F1785472E819EAE6D /* HomeConfiguration.swift */; };
 		774A96422B6E40AF9EAC66AF /* HomeScreenCustomizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB7BF024A7549D29C6293A7 /* HomeScreenCustomizeView.swift */; };
 		B1F17FC3B4434D0587D7000E /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD7BFFF7EA34DD4AEB71556 /* HomeScreenView.swift */; };
@@ -147,6 +148,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		044205BC2B2144E1964CBE0D /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/macOS/Browser/VisualEffectView.swift; sourceTree = "<group>"; };
 		DA37768F1785472E819EAE6D /* HomeConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeConfiguration.swift; sourceTree = "<group>"; };
 		0EB7BF024A7549D29C6293A7 /* HomeScreenCustomizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCustomizeView.swift; sourceTree = "<group>"; };
 		7BD7BFFF7EA34DD4AEB71556 /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
