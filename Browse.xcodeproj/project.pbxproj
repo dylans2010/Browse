@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		302BD3F4F3220B7641997B5E /* BookmarkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FE9A7E6D988B4C30E7B854 /* BookmarkManager.swift */; };
+		4B29BA44AD7315D0E2351708 /* TabBarMacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0121200FB998856C76DB7BC5 /* TabBarMacOS.swift */; };
+		0A89AFE1CB3DEF33CD937C73 /* TabCardMacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8312518A8D39FA20B4D35FB0 /* TabCardMacOS.swift */; };
+		626385C7A6FB5C771CD48BC8 /* ToolsMenuMacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5F82F6740EF0008A3C63C5 /* ToolsMenuMacOS.swift */; };
+		03AA0699CA0CB8EC4E5F7ACB /* ToolsMenuMacOSViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8939013D4A813631DA1D1905 /* ToolsMenuMacOSViewModel.swift */; };
+		B82095E03658716F4E7F440B /* FavoritesGridMacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD35307D13EE27B3F6C42D34 /* FavoritesGridMacOS.swift */; };
+		6D63513EBDCFFE05777F5F1B /* FrequentlyVisitedMacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1612A832DCE0AA016099EA /* FrequentlyVisitedMacOS.swift */; };
 		AF412F8C8F7C42FD85DC03B5 /* CommandManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDC7CA4BA1C4D2D8EE7DD34 /* CommandManager.swift */; };
 		DA534AC4B5B141C0ACDA6304 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044205BC2B2144E1964CBE0D /* VisualEffectView.swift */; };
 		74B155DA95EB4DB48F92EC69 /* HomeConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA37768F1785472E819EAE6D /* HomeConfiguration.swift */; };
@@ -154,6 +161,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B8FE9A7E6D988B4C30E7B854 /* BookmarkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkManager.swift; sourceTree = "<group>"; };
+		0121200FB998856C76DB7BC5 /* TabBarMacOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarMacOS.swift; sourceTree = "<group>"; };
+		8312518A8D39FA20B4D35FB0 /* TabCardMacOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCardMacOS.swift; sourceTree = "<group>"; };
+		EB5F82F6740EF0008A3C63C5 /* ToolsMenuMacOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsMenuMacOS.swift; sourceTree = "<group>"; };
+		8939013D4A813631DA1D1905 /* ToolsMenuMacOSViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsMenuMacOSViewModel.swift; sourceTree = "<group>"; };
+		BD35307D13EE27B3F6C42D34 /* FavoritesGridMacOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesGridMacOS.swift; sourceTree = "<group>"; };
+		2E1612A832DCE0AA016099EA /* FrequentlyVisitedMacOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequentlyVisitedMacOS.swift; sourceTree = "<group>"; };
 		DBDC7CA4BA1C4D2D8EE7DD34 /* CommandManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browser/CommandManager.swift; sourceTree = "<group>"; };
 		044205BC2B2144E1964CBE0D /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/macOS/Browser/VisualEffectView.swift; sourceTree = "<group>"; };
 		DA37768F1785472E819EAE6D /* HomeConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeConfiguration.swift; sourceTree = "<group>"; };
@@ -407,11 +421,20 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		369899EBCF6D3BA1CB8F6CB6 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				B8FE9A7E6D988B4C30E7B854 /* BookmarkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		9FE0B35CB6919C7BDA3EFCF3 /* Bookmarks */ = {
 			isa = PBXGroup;
 			children = (
 				E0F2BD27C06E56EC03517F9B /* Bookmark.swift */,
 				963EB94E73B7DCDCED3453E5 /* BookmarkHealthChecker.swift */,
+				369899EBCF6D3BA1CB8F6CB6 /* Managers */,
 			);
 			path = Bookmarks;
 			sourceTree = "<group>";
@@ -692,10 +715,19 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		32BDAEDFCC73288EF03EEFB2 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				8939013D4A813631DA1D1905 /* ToolsMenuMacOSViewModel.swift */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
 		7BBB1031C85A68C1162B6D6F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				123BB3C783AF0CF410B46925 /* ReadingListViewModel.swift */,
+				32BDAEDFCC73288EF03EEFB2 /* macOS */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -728,6 +760,32 @@
 			path = iOS;
 			sourceTree = "<group>";
 		};
+		8FE7B9E09A3F45C484CD615E /* StartPage */ = {
+			isa = PBXGroup;
+			children = (
+				BD35307D13EE27B3F6C42D34 /* FavoritesGridMacOS.swift */,
+				2E1612A832DCE0AA016099EA /* FrequentlyVisitedMacOS.swift */,
+			);
+			path = StartPage;
+			sourceTree = "<group>";
+		};
+		76A8F18B422CD01813ED1B04 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				0121200FB998856C76DB7BC5 /* TabBarMacOS.swift */,
+				8312518A8D39FA20B4D35FB0 /* TabCardMacOS.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		D6891AB05196327C85888BB5 /* Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				EB5F82F6740EF0008A3C63C5 /* ToolsMenuMacOS.swift */,
+			);
+			path = Toolbar;
+			sourceTree = "<group>";
+		};
 		A0961EB136E1D9ACEC609FD1 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -742,7 +800,10 @@
 				689F1DF5BE7805D8C19D4876 /* Security */,
 				9093B898541EEF031BA1CBA3 /* Sessions */,
 				91D090FC14A7A8006890378A /* Settings */,
+				8FE7B9E09A3F45C484CD615E /* StartPage */,
+				76A8F18B422CD01813ED1B04 /* Tabs */,
 				58A51BE3C1CB1478AEF239ED /* Themes */,
+				D6891AB05196327C85888BB5 /* Toolbar */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -1089,7 +1150,14 @@
 				DA534AC4B5B141C0ACDA6304 /* VisualEffectView.swift in Sources */,
 				74B155DA95EB4DB48F92EC69 /* HomeConfiguration.swift in Sources */,
 				774A96422B6E40AF9EAC66AF /* HomeScreenCustomizeView.swift in Sources */,
+				302BD3F4F3220B7641997B5E /* BookmarkManager.swift in Sources */,
+				B82095E03658716F4E7F440B /* FavoritesGridMacOS.swift in Sources */,
+				6D63513EBDCFFE05777F5F1B /* FrequentlyVisitedMacOS.swift in Sources */,
 				B1F17FC3B4434D0587D7000E /* HomeScreenView.swift in Sources */,
+				4B29BA44AD7315D0E2351708 /* TabBarMacOS.swift in Sources */,
+				0A89AFE1CB3DEF33CD937C73 /* TabCardMacOS.swift in Sources */,
+				626385C7A6FB5C771CD48BC8 /* ToolsMenuMacOS.swift in Sources */,
+				03AA0699CA0CB8EC4E5F7ACB /* ToolsMenuMacOSViewModel.swift in Sources */,
 				A2C12DA05ED3B4FF3BC32EBF /* AIContextManager.swift in Sources */,
 				53B9F9243F5A290A04090B28 /* AIErrorHandler.swift in Sources */,
 				7EFEF05BA3289F577C4214BE /* AIRateLimiter.swift in Sources */,
