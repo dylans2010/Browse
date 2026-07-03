@@ -53,6 +53,12 @@ final class WebPageManager: NSObject, WKNavigationDelegate, WKUIDelegate {
         webView.load(request)
     }
 
+    func getPageContent() async throws -> String {
+        let script = "document.body.innerText"
+        let result = try await webView.evaluateJavaScript(script)
+        return result as? String ?? ""
+    }
+
     nonisolated override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         switch keyPath {
         case "estimatedProgress", "title", "URL", "isLoading", "canGoBack", "canGoForward":
