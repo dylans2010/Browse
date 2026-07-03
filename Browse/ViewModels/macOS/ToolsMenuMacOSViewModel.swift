@@ -29,13 +29,3 @@ final class ToolsMenuMacOSViewModel {
         }
     }
 }
-
-extension CommandManager {
-    func matchCommand(_ input: String) -> (() -> Void)? {
-        return commands[input.lowercased()]
-    }
-
-    var allCommands: [String] {
-        return Array(commands.keys)
-    }
-}

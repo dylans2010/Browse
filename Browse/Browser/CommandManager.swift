@@ -52,8 +52,12 @@ final class CommandManager {
         commands[command.lowercased()] = action
     }
 
-    private func matchCommand(_ input: String) -> (() -> Void)? {
-        return commands[input]
+    func matchCommand(_ input: String) -> (() -> Void)? {
+        return commands[input.lowercased()]
+    }
+
+    var allCommands: [String] {
+        return Array(commands.keys)
     }
 
     private func registerDefaultCommands() {
