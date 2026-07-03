@@ -53,6 +53,18 @@ final class WebPageManager: NSObject, WKNavigationDelegate, WKUIDelegate {
         webView.load(request)
     }
 
+    func goBack() {
+        webView.goBack()
+    }
+
+    func goForward() {
+        webView.goForward()
+    }
+
+    func reload() {
+        webView.reload()
+    }
+
     func getPageContent() async throws -> String {
         let script = "document.body.innerText"
         let result = try await webView.evaluateJavaScript(script)
