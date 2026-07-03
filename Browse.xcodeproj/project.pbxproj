@@ -371,6 +371,7 @@
 				757B14D239DC166F400A4072 /* Storage */,
 				FDA205E55C8171403B3BC686 /* Themes */,
 				5A6928763315D60C7A7DDDDF /* Utilities */,
+				A1B2C3D4E5F60011223344BB /* ViewModels */,
 				5B1F9B370DB43E41049D5D0F /* Views */,
 				0CF7DF03F170F5B476B718C2 /* Workspaces */,
 				C8923F6EC6DB9CFA5CC3E4F5 /* Info.plist */,
@@ -727,6 +728,13 @@
 			isa = PBXGroup;
 			children = (
 				123BB3C783AF0CF410B46925 /* ReadingListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A1B2C3D4E5F60011223344BB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
 				32BDAEDFCC73288EF03EEFB2 /* macOS */,
 			);
 			path = ViewModels;
