@@ -2,6 +2,7 @@ import Foundation
 import Observation
 
 @Observable
+@MainActor
 final class TabViewModel {
     private let logicManager = TabLogicManager.shared
     private let tabManager: TabManager
