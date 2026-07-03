@@ -3,8 +3,9 @@ import Observation
 import WebKit
 
 @Observable
+@MainActor
 final class WebPageManager: NSObject, WKNavigationDelegate, WKUIDelegate {
-    let webView: WKWebView
+    nonisolated let webView: WKWebView
     var url: URL?
     var title: String = ""
     var isLoading: Bool = false
@@ -14,7 +15,7 @@ final class WebPageManager: NSObject, WKNavigationDelegate, WKUIDelegate {
     var isReaderAvailable: Bool = false
 
     var onURLChange: ((URL, String) -> Void)?
-    private let tabID: UUID
+    nonisolated private let tabID: UUID
     private weak var tabManager: TabManager?
     private var coordinator: WebViewCoordinator?
 
@@ -52,37 +53,39 @@ final class WebPageManager: NSObject, WKNavigationDelegate, WKUIDelegate {
         webView.load(request)
     }
 
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            switch keyPath {
-            case "estimatedProgress":
-                self.estimatedProgress = self.webView.estimatedProgress
-                self.tabManager?.updateLoadingState(for: self.tabID, isLoading: self.webView.isLoading, progress: self.webView.estimatedProgress)
-            case "title":
-                self.title = self.webView.title ?? ""
-                self.tabManager?.updateTitle(for: self.tabID, title: self.title)
-            case "URL":
-                self.url = self.webView.url
-                if let url = self.url {
-                    self.onURLChange?(url, self.title)
-                    Task {
+    nonisolated override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        switch keyPath {
+        case "estimatedProgress", "title", "URL", "isLoading", "canGoBack", "canGoForward":
+            Task { @MainActor in
+                switch keyPath {
+                case "estimatedProgress":
+                    self.estimatedProgress = self.webView.estimatedProgress
+                    self.tabManager?.updateLoadingState(for: self.tabID, isLoading: self.webView.isLoading, progress: self.webView.estimatedProgress)
+                case "title":
+                    self.title = self.webView.title ?? ""
+                    self.tabManager?.updateTitle(for: self.tabID, title: self.title)
+                case "URL":
+                    self.url = self.webView.url
+                    if let url = self.url {
+                        self.onURLChange?(url, self.title)
                         await FaviconCache.shared.prefetch(for: self.webView, domain: url.host ?? "")
                         if let data = await FaviconCache.shared.favicon(for: url.host ?? "") {
                             self.tabManager?.updateFavicon(for: self.tabID, data: data)
                         }
                     }
+                case "isLoading":
+                    self.isLoading = self.webView.isLoading
+                    self.tabManager?.updateLoadingState(for: self.tabID, isLoading: self.isLoading, progress: self.estimatedProgress)
+                    if !self.isLoading {
+                        self.isReaderAvailable = true
+                    }
+                case "canGoBack": self.canGoBack = self.webView.canGoBack
+                case "canGoForward": self.canGoForward = self.webView.canGoForward
+                default: break
                 }
-            case "isLoading":
-                self.isLoading = self.webView.isLoading
-                self.tabManager?.updateLoadingState(for: self.tabID, isLoading: self.isLoading, progress: self.estimatedProgress)
-                if !self.isLoading {
-                    self.isReaderAvailable = true
-                }
-            case "canGoBack": self.canGoBack = self.webView.canGoBack
-            case "canGoForward": self.canGoForward = self.webView.canGoForward
-            default: super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
             }
+        default:
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
 
