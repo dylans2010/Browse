@@ -1,9 +1,12 @@
 import Foundation
 import SwiftData
 
+@MainActor
 final class SessionManager {
     static let shared = SessionManager()
-    private let context = PersistenceProvider.shared.mainContext
+    private var context: ModelContext {
+        PersistenceProvider.shared.mainContext
+    }
 
     func saveSession(tabs: [TabManager.TabWrapper]) {
         // Use a more refined approach: update existing items or delete only session-related ones
